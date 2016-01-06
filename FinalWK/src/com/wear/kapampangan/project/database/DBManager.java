@@ -111,7 +111,7 @@ public class DBManager{
 			
 			while(rs.next()){
 				Item item = new Item(
-						rs.getString("product_code"),
+						rs.getString("item_id"),
 						rs.getString("name"),
 						rs.getDouble("price"),
 						rs.getString("image"),

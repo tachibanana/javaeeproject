@@ -65,7 +65,7 @@
 		</div>
 		
 		<!-- FEATURES PRODUCT Here -->
-		<!--<jsp:include page="features_product.jsp" />-->
+		<jsp:include page="features_product.jsp" />
  
 	 	<!-- Banner At Bottom -->
 		<div class="parallax-section parallax-image-2">
