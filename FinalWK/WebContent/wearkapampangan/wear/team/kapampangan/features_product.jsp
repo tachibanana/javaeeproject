@@ -1,6 +1,7 @@
 <%@ page import="com.wear.kapampangan.project.database.DBManager" %>
 <%@ page import="com.wear.kapampangan.project.library.Item" %>
 <%@ page import="com.wear.kapampangan.project.library.Size" %>
+<%@ page import="com.wear.kapampangan.project.library.InventoryProduct" %>
 <div class="morePost row featuredPostContainer style2 globalPaddingTop ">
 	<h3 class="section-title style2 text-center">
 		<span>FEATURES SHIRT</span>
@@ -12,7 +13,7 @@
 		<%! int counter = 0; %>
 		<%
 			manager = (DBManager) request.getServletContext().getAttribute("dbmanager");		
-			for(Item item : manager.getItemList()){ 
+			for(InventoryProduct product : manager.getInventoryProduct()){ 
 		%>
 			
 			<!-- ITEM START Here -->
@@ -26,22 +27,22 @@
 					<!-- Image -->
 					<div class="image">
 						<div class="quickview">
-							<a title="Quick View" class="btn btn-xs  btn-quickview" href="product-details.jsp?productCode=<%= item.getProductCode()%>"
-								data-target="product-details.jsp?productCode=<%= item.getProductCode()%>" data-toggle="modal"> Quick View </a>
+							<a title="Quick View" class="btn btn-xs  btn-quickview" href="product-details.jsp?productCode=<%= product.getId()%>"
+								data-target="product-details.jsp?productCode=<%= product.getId()%>" data-toggle="modal"> Quick View </a>
 						</div>
-						<a href="product-details.jsp?productCode=<%= item.getProductCode()%>"><img
-							src="<%= item.getImage()%>" alt="img" class="img-responsive"></a>
+						<a href="product-details.jsp?productCode=<%= product.getId()%>"><img
+							src="<%= product.getItem().getImage()%>" alt="img" class="img-responsive"></a>
 					</div>
 
 					<!-- Description -->
 					<div class="description">
 						<h4>
-							<a href="product-details.html"><%= item.getName() %></a>
+							<a href="product-details.html"><%= product.getItem().getName() %></a>
 						</h4>
-						<p><%= item.getDescription() %></p>
+						<p><%= product.getItem().getDescription() %></p>
 						<span class="size"> M /
-						<% for(Size size : item.getListOfSize()){ 
-							if(counter < item.getListOfSize().size() - 1){
+						<% for(Size size : product.getAvailableSize()){ 
+							if(counter < product.getAvailableSize().size() - 1){
 						%>
 						<%= size.getSize() +" / "%>
 						<% }else{%>
@@ -53,7 +54,7 @@
 
 					<!-- Price -->
 					<div class="price">
-						<span>PHP <%= ((int) item.getPrice()) %></span> <span class="old-price"></span>
+						<span>PHP <%= ((int) product.getItem().getPrice()) %></span> <span class="old-price"></span>
 					</div>
 
 					<div class="action-control">

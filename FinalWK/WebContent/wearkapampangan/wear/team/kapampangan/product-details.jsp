@@ -2,15 +2,16 @@
 <%@ page import="com.wear.kapampangan.project.library.Item" %>
 <%@ page import="com.wear.kapampangan.project.library.Size" %>
 <%@ page import="com.wear.kapampangan.project.library.Color" %>
+<%@ page import="com.wear.kapampangan.project.library.InventoryProduct" %>
 
 <%! DBManager manager = null; %>
-<%! Item item = null; %>
+<%! InventoryProduct product = null; %>
 <%! int counter = 0;%>
 <%! String productCode = null; %>
 
 <% manager = (DBManager) request.getServletContext().getAttribute("dbmanager"); %>
 <% productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");%>
-<% item = manager.getItemByProductCode(productCode); %>
+<% product = manager.getProductByProductCode(productCode); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,10 +48,10 @@
 		<div class="row transitionfx">
 			<div class="col-lg-6 col-md-6 col-sm-6 productImageZoom">
 				<div class='zoom' id='zoomContent'>
-					<a class="gall-item" title="product-title" href="<%= item.getImage()%>">
+					<a class="gall-item" title="product-title" href="<%= product.getItem().getImage()%>">
 						<img class="zoomImage1 img-responsive"
-						data-src="<%= item.getImage()%>" 
-						src='<%= item.getImage()%>' 
+						data-src="<%= product.getItem().getImage()%>" 
+						src='<%= product.getItem().getImage()%>' 
 						alt='Daisy on the Ohoopee'/>
 					</a>
 				</div>
@@ -79,8 +80,8 @@
 			</div>
  
 			<div class="col-lg-6 col-md-6 col-sm-5">
-				<h1 class="product-title"><%= item.getName() %></h1>
-				<h3 class="product-code">Product Code : <%= item.getProductCode()%></h3>
+				<h1 class="product-title"><%= product.getItem().getName() %></h1>
+				<h3 class="product-code">Product Code : <%= product.getItem().getProductCode()%></h3>
 				<!--
 				<div class="rating">
 					<p>
@@ -96,19 +97,19 @@
 				-->
 				
 			<div class="product-price">
-				<span class="price-sales">PHP <%= ((int) item.getPrice())%></span>
+				<span class="price-sales">PHP <%= ((int) product.getItem().getPrice())%></span>
 				<!-- <span class="price-standard">PHP 95</span> -->
 			</div>
 			
 			<div class="details-description">
-				<p><%= item.getDescription() %></p>
+				<p><%= product.getItem().getDescription() %></p>
 			</div>
 			
 			<!-- COLOR HERE -->
 			<div class="color-details">
 				<span class="selected-color"><strong>COLOR</strong></span>
 				<ul class="swatches Color">
-					<% for(Color color : item.getListOfColor()){%>
+					<% for(Color color : product.getAvailableColor()){%>
 						<% if(counter == 0){ %>
 							<li class="selected"><a id="color" style="background-color:<%= color.getColor()%>"> </a></li>
 						<%}else{%>
@@ -142,7 +143,7 @@
 					<div class="filterBox">
 						<select class="form-control">
 							<option value="strawberries" selected>Size</option>
-							<% for(Size size : item.getListOfSize()){%>
+							<% for(Size size : product.getAvailableSize()){%>
 								<option value="<%= size.getSize()%>"><%= size.getSize()%></option>
 							<% }%>
 						</select>

@@ -25,23 +25,24 @@ public class DBManagerSetup implements ServletContextListener {
     	try{
 //    		//Using POSTGRESQL
 //    		//ServerConnection sc = new PostgreSQLConnection("jdbc:postgresql://localhost/" , "dbwearkapampangan" , "rafael.manuel" ,"" , "org.postgresql.Driver");
-    		ServerConnection sc = new MYSQLConnection("jdbc:mysql://localhost:3306/" , "dbwearkapampangan" , "root" ,"" , "com.mysql.jdbc.Driver");
-    		DBManager manager = new DBManager(sc);
+    		
+    		//ServerConnection sc = new MYSQLConnection("jdbc:mysql://localhost:3306/" , "dbwearkapampangan" , "root" ,"" , "com.mysql.jdbc.Driver");
+    		//DBManager manager = new DBManager(sc);
     		
     		//OPEN Connection
-    		manager.openConnection();
+    		//manager.openConnection();
     		
     		//Connection Status
-    		System.out.println(sc.getConnectionStatus());
+    		//System.out.println(sc.getConnectionStatus());
     		
     		//Connection URL
-    		System.out.println(sc.getConnectionURL());
+    		//System.out.println(sc.getConnectionURL());
     		
-    		ServletContext context = sce.getServletContext();
-    		context.setAttribute("dbmanager", manager);
+    		//ServletContext context = sce.getServletContext();
+    		//context.setAttribute("dbmanager", manager);
     		
     		//Manager Setup Completed
-    		System.out.println("DBManager Setup Completed");
+    		//System.out.println("DBManager Setup Completed");
     		
     	}catch(Exception e){
     		e.printStackTrace();

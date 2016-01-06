@@ -64,18 +64,18 @@
 										</tr>
 										<%for(Product product : listOfProduct){ %>
 										<tr class="CartProduct">
-											<td class="CartProductThumb"><div> <a href="product-details.html"><img src="<%= product.getImage()%>" alt="img"></a> </div></td>
+											<td class="CartProductThumb"><div> <a href="product-details.html"><img src="<%= product.getItem().getImage()%>" alt="img"></a> </div></td>
 											<td>
 												<div class="CartDescription">
-													<h4> <a href="#"><%= product.getName()%></a> </h4>
+													<h4> <a href="#"><%= product.getItem().getName()%></a> </h4>
 													<span class="size"><%= product.getSize()%></span>
-													<div class="price"> <span><%= product.getPrice()%></span></div>
+													<div class="price"> <span><%= product.getItem().getPrice()%></span></div>
 												</div>
 											</td>
 											<td class="delete"><a title="Delete"><i class="glyphicon glyphicon-trash fa-2x"></i></a></td>
 											<td><input class="quanitySniper" type="text" value="<%= product.getQuantity()%>" name="quanitySniper"></td>
 											<!-- <td>0</td> -->
-											<td class="price"><%= product.getPrice() * product.getQuantity()%></td>
+											<td class="price"><%= product.getItem().getPrice() * product.getQuantity()%></td>
 										</tr>
 										<% } %>
 								 </tbody>

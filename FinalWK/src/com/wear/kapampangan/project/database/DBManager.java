@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wear.kapampangan.project.library.Color;
+import com.wear.kapampangan.project.library.InventoryProduct;
 import com.wear.kapampangan.project.library.Item;
 import com.wear.kapampangan.project.library.Size;
 import com.wear.kapampangan.project.library.User;
@@ -27,7 +28,8 @@ public class DBManager{
 	//hindi kasama tong nsa baba
 //	private List<Color> colorList;
 //	private List<Size> sizeList;
-	List<Item> itemList;
+	
+//	List<Item> itemList;
 	
 	public DBManager(ServerConnection server){
 		this.server = server;
@@ -37,46 +39,106 @@ public class DBManager{
 		conn = server.getConnection();
 	}
 	
-	//GET LIST OF ITEM
-//	public List<Item> getItemList(){
-//		itemList = new ArrayList<Item>();
-//		String sql = "SELECT * FROM tblitem";
-//		try{
-//			PreparedStatement pst = conn.prepareStatement(sql);
-//			ResultSet rs = pst.executeQuery();
-//			
-//			while(rs.next()){
-//				Item item = new Item(
-//						rs.getString("product_code"),
-//						rs.getString("name"),
-//						rs.getDouble("price"),
-//						rs.getString("image"),
-//						rs.getString("description"),
-//						rs.getString("status"),
-//						getColorList(rs.getString("product_code")),
-//						getSizeList(rs.getString("product_code")));
-//				
-//				itemList.add(item);
-//			}
-//			
-//			return itemList;
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//			return null;
-//		}
-//		
-//	}
 	
-	//GET COLOR LIST OF AN ITEM ACCORDING TO PRODUCT CODE
-	public List<Color> getColorList(String productCode){
+	
+	
+	//GET INVETORY PRODUCT
+	public List<InventoryProduct> getInventoryProduct(){
+		List<InventoryProduct> inventoryProductList = new ArrayList<InventoryProduct>();
+		
+		try{
+			for(Item item : getItemList()){
+				List<Color> tempColorList = new ArrayList<Color>();
+				List<Size> tempSizeList = new ArrayList<Size>();
+				
+				//Color list
+				try{
+					String sql = "SELECT DISTINCT color_id FROM tblcolor_list WHERE item_id = ?";
+					PreparedStatement pst = conn.prepareStatement(sql);
+					pst.setString(1 , item.getProductCode());
+					ResultSet rs = pst.executeQuery();
+					
+					while(rs.next()){
+						for(Color color : getColorList()){
+							if(color.getId() == rs.getInt("color_id")){
+								tempColorList.add(color);
+								break;
+							}
+						}
+						
+					}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				//Size list
+				try{
+					String sql = "SELECT DISTINCT size_id FROM tblsize_list WHERE item_id = ?";
+					PreparedStatement pst = conn.prepareStatement(sql);
+					pst.setString(1, item.getProductCode());
+					ResultSet rs = pst.executeQuery();
+					
+					while(rs.next()){
+						for(Size size : getSizeList()){
+							if(size.getId() == rs.getInt("size_id")){
+								tempSizeList.add(size);
+								break;
+							}
+						}
+					}
+				}catch(Exception e){
+					
+				}
+				inventoryProductList.add(new InventoryProduct(item.getProductCode() , item , tempColorList , tempSizeList , 5));
+			}
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		return inventoryProductList;
+	}
+	
+	//GET LIST OF ITEM
+	public List<Item> getItemList(){
+		List<Item> itemList = new ArrayList<Item>();
+		String sql = "SELECT * FROM tblitem";
+		try{
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()){
+				Item item = new Item(
+						rs.getString("product_code"),
+						rs.getString("name"),
+						rs.getDouble("price"),
+						rs.getString("image"),
+						rs.getString("description"),
+						rs.getString("status"));
+				
+				itemList.add(item);
+			}
+			
+			return itemList;
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	
+	//GET COLOR LIST
+	public List<Color> getColorList(){
 		List<Color> colorList = new ArrayList<Color>();
-		String sql = "SELECT * FROM tblcolor where product_code = ?";
+		String sql = "SELECT * FROM tblcolor";
 		
 		try{
 			//SET THE QUERY
 			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1 , productCode);
-			
+
 			ResultSet rs = pst.executeQuery();
 			
 			//FETCH THE DATA
@@ -92,15 +154,14 @@ public class DBManager{
 		
 	}
 	
-	//GET SIZE LIST OF AN ITEM ACCORDING TO PRODUCT CODE
-	public List<Size> getSizeList(String productCode){
+	//GET SIZE LIST
+	public List<Size> getSizeList(){
 		List<Size> sizeList = new ArrayList<Size>();
-		String sql = "SELECT * FROM tblsize where product_code = ?";
+		String sql = "SELECT * FROM tblsize";
 		
 		try{
 			//SET THE QUERY
 			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1 , productCode);
 			
 			ResultSet rs = pst.executeQuery();
 			
@@ -118,13 +179,13 @@ public class DBManager{
 	}
 		
 	//GET ITEM BY PRODUCT CODE
-//	public Item getItemByProductCode(String productCode){
-//		for(Item item : getItemList()){
-//			if(item.getProductCode().equals(productCode))
-//				return item;
-//		}
-//		return null;
-//	}
+	public InventoryProduct getProductByProductCode(String productCode){
+		for(InventoryProduct product : getInventoryProduct()){
+			if(product.getItem().getProductCode().equals(productCode))
+				return product;
+		}
+		return null;
+	}
 	
 	//GET ALL USER
 	public List<User> getAllUser(){
