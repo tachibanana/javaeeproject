@@ -39,6 +39,7 @@ public class ProductListSetup implements HttpSessionListener{
         
         //create an attribute object
         session.setAttribute("cartItem", listOfProduct);
+        System.out.println("game");
     }
 
     public void sessionDestroyed(HttpSessionEvent arg0){ 

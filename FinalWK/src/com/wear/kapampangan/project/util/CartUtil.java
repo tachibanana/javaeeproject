@@ -8,12 +8,12 @@ import com.wear.kapampangan.project.library.Product;
 
 public class CartUtil {
 	
-//	private static List<Product> listOfProduct;
+	private static List<Product> listOfProduct;
 	
-//	@SuppressWarnings("unchecked")
-//	public CartUtil(HttpSession session){
-//		listOfProduct = (List<Product>) session.getAttribute("cartItem");
-//	}
+	@SuppressWarnings("unchecked")
+	public CartUtil(HttpSession session){
+		listOfProduct = (List<Product>) session.getAttribute("cartItem");
+	}
 	
 //	public String addToCart(String productCode , String name , double price , String image ,  int quantity , String color , String size){
 //		try{
@@ -28,23 +28,23 @@ public class CartUtil {
 //		
 //	}
 	
-//	public List<Product> removeToCart(String productCode , String color , String size){
-//		try{
-//			for(Product product : listOfProduct){
-//				if(product.getProductCode().equals(productCode)){
-//					
-//					if(product.getColor().equals(color) || product.getSize().equals(size)){
-//						listOfProduct.remove(product);
-//						break;
-//					}
-//				}
-//			}
-//			
-//			return listOfProduct;
-//		}catch(Exception e){
-//			return listOfProduct;
-//		}
-//	}
+	public List<Product> removeToCart(String productCode , String color , String size){
+		try{
+			for(Product product : listOfProduct){
+				if(product.getItem().getProductCode().equals(productCode)){
+					
+					if(product.getColor().getColor().equals(color) || product.getSize().getSize().equals(size)){
+						listOfProduct.remove(product);
+						break;
+					}
+				}
+			}
+			
+			return listOfProduct;
+		}catch(Exception e){
+			return listOfProduct;
+		}
+	}
 	
 //	public void updateQuantity(String productCode , String  color ,String size , int newQuantity){
 //		String setcode = "";

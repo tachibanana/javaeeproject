@@ -11,7 +11,6 @@ public class Product {
 	
 	public Product(int id, int quantity, double totalPrice, Item item,
 			Color color, Size size) {
-		super();
 		this.id = id;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;

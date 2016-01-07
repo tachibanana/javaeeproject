@@ -45,7 +45,9 @@
 
 						<td style="width: 1 0%" class="miniCartQuantity"><a>X <%= product.getQuantity()%></a></td>
 						<td style="width: 15%" class="miniCartSubtotal"><span>PHP <%= product.getItem().getPrice() * product.getQuantity() %></span></td>
-						<td name="<%=product.getItem().getProductCode()%>" style="width: 5%" class="delete" id="product-key" onclick="removeItem()"><a> x </a></td>
+						<td name="<%=product.getItem().getProductCode()%>" style="width: 5%" class="delete" id="product-key"
+						 	onclick="removeItem('<%=product.getItem().getProductCode()%>' , '<%= product.getColor().getColor()%>' , '<%= product.getSize().getSize()%>')">
+						 <a> x </a></td>
 					</tr>
 					<%} %>
 				</tbody>
@@ -74,14 +76,14 @@
 		var size = "XL";
 		var quantity = 5;
 		
-		function removeItem(){
+		function removeItem(code_ , color_ , size_){
 			xmlhttp.onreadystatechange = function(){
 				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
 					document.getElementById("cartItemID").innerHTML = xmlhttp.responseText;
 				}
 			};
-			xmlhttp.open("GET","/FinalWK/remove?productCode=" + code +"&name=" + name + "&quantity=" + quantity +
-					"&color=" + color + "&size=" + size,true);
+			xmlhttp.open("GET","/FinalWK/remove?productCode=" + code_ +"&name=" + name + "&quantity=" + quantity +
+					"&color=" + color_ + "&size=" + size_,true);
 			xmlhttp.send();
 		}
 	
