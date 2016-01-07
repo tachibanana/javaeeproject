@@ -2,11 +2,9 @@
 <%@ page import="com.wear.kapampangan.project.library.Product" %>
 <%@ page import="java.util.List" %>
 
-<%! DBManager manager = null; %>
 <%! List<Product> listOfProduct = null; %>
 <%! int cartPrice = 0; %>
 
-<% manager = (DBManager) request.getServletContext().getAttribute("dbmanager"); %>
 <% listOfProduct = (List<Product>) request.getSession().getAttribute("cartItem"); %>
 <% cartPrice = 0; %>
 <% for(Product product : listOfProduct) cartPrice += (product.getItem().getPrice() * product.getQuantity());%>

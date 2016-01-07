@@ -1,9 +1,7 @@
 package com.wear.kapampangan.project.util;
 
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import com.wear.kapampangan.project.library.Product;
 
 public class CartUtil {
@@ -15,18 +13,42 @@ public class CartUtil {
 		listOfProduct = (List<Product>) session.getAttribute("cartItem");
 	}
 	
-//	public String addToCart(String productCode , String name , double price , String image ,  int quantity , String color , String size){
-//		try{
-//			
-//			Product newProduct = new Product(productCode , name, price,image,quantity,color,size);
-//			listOfProduct.add(newProduct);
-//			
-//			return "ONE ITEM ADDED TO CART.";
-//		}catch(Exception e){
-//			return "FAILED TO ADD INTO CART";
-//		}
-//		
-//	}
+	public List<Product> addToCart(Product product_){
+		try{
+			Product tempProduct = null;
+			boolean notExist = true;
+			for(Product product : listOfProduct){
+				System.out.printf("*%s = %s\n", product_.getItem().getProductCode() , product.getItem().getProductCode());
+				if(product.getItem().getProductCode().equals(product_.getItem().getProductCode())){
+					if(product.getSize().getSize() == product_.getSize().getSize() && product.getColor().getColor() == product_.getColor().getColor()){
+						notExist = false;
+						tempProduct = new Product(0,
+												  product.getQuantity() + product_.getQuantity(),
+												  product.getTotalPrice() + product_.getItem().getPrice(),
+												  product.getItem(),
+												  product.getColor(),
+												  product.getSize());
+						listOfProduct.remove(product);
+						break;
+					}
+				}
+			}
+			
+			if(notExist){
+				listOfProduct.add(product_);
+				System.out.println("YES");
+			}else{
+				listOfProduct.add(tempProduct);
+				System.out.println("NO");
+			}
+				
+			
+			return listOfProduct;
+		}catch(Exception e){
+			return null;
+		}
+		
+	}
 	
 	public List<Product> removeToCart(String productCode , String color , String size){
 		try{
