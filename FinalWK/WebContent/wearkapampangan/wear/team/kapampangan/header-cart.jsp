@@ -2,12 +2,12 @@
 <%@ page import="com.wear.kapampangan.project.library.Product" %>
 <%@ page import="java.util.List" %>
 
-<%! List<Product> listOfProduct = null; %>
+<%! List<Product> listOfProducts = null; %>
 <%! int cartPrice = 0; %>
 
-<% listOfProduct = (List<Product>) request.getSession().getAttribute("cartItem"); %>
+<% listOfProducts = (List<Product>) request.getSession().getAttribute("cartItem"); %>
 <% cartPrice = 0; %>
-<% for(Product product : listOfProduct) cartPrice += (product.getItem().getPrice() * product.getQuantity());%>
+<% for(Product product : listOfProducts) cartPrice += product.getTotalPrice();%>
 
 <div class="dropdown  cartMenu" id="cartItemID">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -18,7 +18,7 @@
 		<div class="w100 miniCartTable scroll-pane">
 			<table>
 				<tbody id="">
-					<% for(Product product : listOfProduct){ %>
+					<% for(Product product : listOfProducts){ %>
 					<!-- Item Here -->
 					<tr class="miniCartProduct" id="<%= product.getItem().getProductCode()%>">
 						<td style="width: 20%" class="miniCartProductThumb">
@@ -42,7 +42,7 @@
 						</td>
 
 						<td style="width: 1 0%" class="miniCartQuantity"><a>X <%= product.getQuantity()%></a></td>
-						<td style="width: 15%" class="miniCartSubtotal"><span>PHP <%= product.getItem().getPrice() * product.getQuantity() %></span></td>
+						<td style="width: 15%" class="miniCartSubtotal"><span>PHP <%= product.getTotalPrice() %></span></td>
 						<td name="<%=product.getItem().getProductCode()%>" style="width: 5%" class="delete" id="product-key"
 						 	onclick="removeItem('<%=product.getItem().getProductCode()%>' , '<%= product.getColor().getColor()%>' , '<%= product.getSize().getSize()%>')">
 						 <a> x </a></td>

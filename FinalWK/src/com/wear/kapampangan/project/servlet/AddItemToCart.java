@@ -52,7 +52,7 @@ public class AddItemToCart extends HttpServlet{
 		session.setAttribute("cartItem" , productList);
 		
 		int cartItemPrice = 0;
-		for(Product product : productList) cartItemPrice += product.getItem().getPrice();
+		for(Product product : productList) cartItemPrice += product.getTotalPrice();
 		
 		out.println(""+
 			"<a href='#' class='dropdown-toggle' data-toggle='dropdown'>" +
@@ -86,7 +86,7 @@ public class AddItemToCart extends HttpServlet{
 			"</div>" +
 			"</td>" +
 			"<td style='width: 10%' class='miniCartQuantity'><a>X " + product.getQuantity() + "</a></td>" +
-			"<td style='width: 15%' class='miniCartSubtotal'><span>PHP " + product.getItem().getPrice() + "</span></td>" +
+			"<td style='width: 15%' class='miniCartSubtotal'><span>PHP " + product.getTotalPrice() + "</span></td>" +
 			"<td style='width: 5%' class='delete' id='" + product.getItem().getProductCode() + "' onclick='removeItem(\""+ product.getItem().getProductCode() +"\" , \""+ product.getColor().getColor() +"\" , \""+ product.getSize().getSize() +"\");'><a> x </a></td>" +
 			"</tr>");			
 		}

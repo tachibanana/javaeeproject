@@ -29,6 +29,7 @@ public class CartUtil {
 												  product.getColor(),
 												  product.getSize());
 						listOfProduct.remove(product);
+						System.out.println( product.getTotalPrice() + " = " + product_.getItem().getPrice());
 						break;
 					}
 				}
@@ -66,6 +67,31 @@ public class CartUtil {
 		}catch(Exception e){
 			return listOfProduct;
 		}
+	}
+	
+	public List<Product> updateQuantity(String code , String color , String size , int newQuantity){
+		Product newProduct = null;
+		List<Product> tempListOfProduct = listOfProduct;
+		for(Product product : tempListOfProduct){
+			System.out.println("- counter\n");
+			if(product.getItem().getProductCode().equals(code)){
+				if(product.getSize().getSize().equals(size) && product.getColor().getColor().equals(color)){
+					System.out.println("- test\n");
+					newProduct = new Product(1 ,
+							newQuantity ,
+							newQuantity * product.getItem().getPrice() ,
+							product.getItem() ,
+							product.getColor() , 
+							product.getSize());
+					tempListOfProduct.remove(product);
+					break;
+				}
+			}
+			
+		}
+		
+		tempListOfProduct.add(newProduct);
+		return tempListOfProduct;
 	}
 	
 //	public void updateQuantity(String productCode , String  color ,String size , int newQuantity){

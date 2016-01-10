@@ -51,7 +51,7 @@
 				<div class="col-lg-9 col-md-9 col-sm-7">
 					<div class="row userInfo">
 						<div class="col-xs-12 col-sm-12">
-							<div class="cartContent w100">
+							<div class="cartContent w100" id="cartItemId">
 								<table class="cartTable table-responsive" style="width:100%">
 									<tbody>
 										<tr class="CartProduct cartTableHeader">
@@ -68,7 +68,7 @@
 											<td>
 												<div class="CartDescription">
 													<h4> <a href="#"><%= product.getItem().getName()%></a> </h4>
-													<span class="size"><%= product.getSize()%></span>
+													<span class="size"><%= product.getSize().getSize() %></span>
 													<div class="price"> <span><%= product.getItem().getPrice()%></span></div>
 												</div>
 											</td>

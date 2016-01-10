@@ -46,9 +46,9 @@
 						%>
 						<%= size.getSize() +" / "%>
 						<% }else{%>
-						<%= size.getSize()%>
+						<%= size.getSize() %>
 	
-						<%} counter ++; }%>	
+						<%} counter ++; }counter = 0;%>	
 						</span>
 					</div>
 
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="action-control">
-						<a class="btn btn-primary" onclick="addItem('<%= product.getItem().getProductCode() %>' , 'RED' , 'S' , '1')"> <span class="add2cart"><i
+						<a class="btn btn-primary" onclick="addItem('<%= product.getItem().getProductCode() %>' , '<%= product.getAvailableColor().get(0).getColor()%>' , '<%= product.getAvailableSize().get(0).getSize()%>' , '1')"> <span class="add2cart"><i
 								class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
 						</a>
 					</div>
