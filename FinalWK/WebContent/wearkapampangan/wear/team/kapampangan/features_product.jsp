@@ -40,7 +40,7 @@
 							<a href="product-details.html"><%= product.getItem().getName() %></a>
 						</h4>
 						<p><%= product.getItem().getDescription() %></p>
-						<span class="size"> M /
+						<span class="size">
 						<% for(Size size : product.getAvailableSize()){ 
 							if(counter < product.getAvailableSize().size() - 1){
 						%>
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="action-control">
-						<a class="btn btn-primary" href=""> <span class="add2cart"><i
+						<a class="btn btn-primary" onclick="addItem('<%= product.getItem().getProductCode() %>' , 'RED' , 'S' , '1')"> <span class="add2cart"><i
 								class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
 						</a>
 					</div>

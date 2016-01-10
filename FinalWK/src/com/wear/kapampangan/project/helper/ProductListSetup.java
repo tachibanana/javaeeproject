@@ -29,9 +29,9 @@ public class ProductListSetup implements HttpSessionListener{
         
         Item item1 = new Item("RX7809","Libut Libut" , 200 , "images/product/libut_libut.jpg" , "status" , "description");
         Color red = new Color(1,"RED","#aaaggg");
-        Size large = new Size(1 , "L");
+        Size small = new Size(2 , "S");
         
-        listOfProduct.add(new Product(1 , 5 , 500.00 , item1 , red , large));
+        listOfProduct.add(new Product(1 , 5 , 500.00 , item1 , red , small));
         //listOfProduct.add(new Product("RX7809" ,"Libut Libut" , 200 ,"images/product/libut_libut.jpg" , 5 , "RED" , "XL"));
        // listOfProduct.add(new Product("RXFY9" ,"Ciudad ning Angles" , 250 ,"images/product/ciudad_ning_angles.jpg" , 2 , "RED" , "XL"));
         

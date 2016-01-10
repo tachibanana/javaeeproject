@@ -18,9 +18,9 @@ public class CartUtil {
 			Product tempProduct = null;
 			boolean notExist = true;
 			for(Product product : listOfProduct){
-				System.out.printf("*%s = %s\n", product_.getItem().getProductCode() , product.getItem().getProductCode());
+				System.out.printf("*%s = %s & %s = %s || %s = %s\n", product_.getItem().getProductCode() , product.getItem().getProductCode() , product_.getColor().getColor() , product.getColor().getColor(), product_.getSize().getSize() , product.getSize().getSize());
 				if(product.getItem().getProductCode().equals(product_.getItem().getProductCode())){
-					if(product.getSize().getSize() == product_.getSize().getSize() && product.getColor().getColor() == product_.getColor().getColor()){
+					if(product.getSize().getSize().equals(product_.getSize().getSize()) && product.getColor().getColor().equals(product_.getColor().getColor())){
 						notExist = false;
 						tempProduct = new Product(0,
 												  product.getQuantity() + product_.getQuantity(),

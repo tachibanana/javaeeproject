@@ -103,6 +103,29 @@
 		<script src="assets/js/bootstrap.touchspin.js"></script>
 		<script src="assets/js/home.js"></script>
 		<script src="assets/js/script.js"></script>
+		<script>
+	
+		var xmlhttp = new XMLHttpRequest();
+		var code = "RX7809";
+		var name = "Libut Libut";
+		var price = 200;
+		var color = "RED";
+		var size = "XL";
+		var quantity = 5;
+		
+		function addItem(code_ , color_ , size_ , quantity_){
+			alert(code_ + " " + color_ + " " + size_);
+			xmlhttp.onreadystatechange = function(){
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					document.getElementById("cartItemID").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET","/FinalWK/add?productCode=" + code_ +"&name=" + name + "&quantity=" + quantity_ +
+					"&color=" + color_ + "&size=" + size_,true);
+			xmlhttp.send();
+		}
+	
+</script>
 		
 	</body>
 </html>

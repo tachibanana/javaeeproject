@@ -85,7 +85,7 @@ public class RemoveItemFromCartServlet extends HttpServlet {
 				"</td>" +
 				"<td style='width: 10%' class='miniCartQuantity'><a>X " + product.getQuantity() + "</a></td>" +
 				"<td style='width: 15%' class='miniCartSubtotal'><span>PHP " + product.getItem().getPrice() + "</span></td>" +
-				"<td style='width: 5%' class='delete' id='" + product.getItem().getProductCode() + "' onclick='removeItem();'><a> x </a></td>" +
+				"<td style='width: 5%' class='delete' id='" + product.getItem().getProductCode() + "' onclick='removeItem(\""+ product.getItem().getProductCode() +"\" , \""+ product.getColor().getColor() +"\" , \""+ product.getSize().getSize() +"\");'><a> x </a></td>" +
 				"</tr>");			
 			}
 			
@@ -95,10 +95,9 @@ public class RemoveItemFromCartServlet extends HttpServlet {
 				"</div>" +
 				"<div class='miniCartFooter text-right'>" +
 				"<h3 class='text-right subtotal'>Subtotal: PHP "+ cartItemPrice +"</h3>" +
-				"<a class='btn btn-sm btn-danger'> <i class='fa fa-shopping-cart'>" +
-				"</i> VIEW CART" +
-				"</a><a class='btn btn-sm btn-primary'> CHECKOUT </a>" +
-				"</div>");
+				"<button class='btn btn-sm btn-danger'><i class='fa fa-shopping-cart'></i> VIEW CART </button> " +
+				"<button class='btn btn-sm btn-primary'> CHECKOUT </button>" +
+				"</div></div>");
 		
 			
 			

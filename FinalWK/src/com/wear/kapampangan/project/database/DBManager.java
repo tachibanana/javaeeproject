@@ -115,8 +115,8 @@ public class DBManager{
 						rs.getString("name"),
 						rs.getDouble("price"),
 						rs.getString("image"),
-						rs.getString("description"),
-						rs.getString("status"));
+						rs.getString("status"),
+						rs.getString("description"));
 				
 				itemList.add(item);
 			}

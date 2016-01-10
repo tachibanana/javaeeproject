@@ -36,16 +36,16 @@ public class AddItemToCart extends HttpServlet{
 		CartUtil cartUtil = new CartUtil(session);
 		manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
 		
-//		Item item = getItem(productCode , manager.getItemList());
-//		Color color = getColor(colorValue , manager.getColorList());
-//		Size size = getSize(sizeValue , manager.getSizeList());
-//		
-//		Product product_ = new Product(1 , quantity, item.getPrice() , item , color , size);
-		Item item1 = new Item("RAF123","KAIN TAYO" , 400 , "images/product/masyas.jpg" , "status" , "description");
-        Color blue = new Color(1,"BLUE","#aaaggg");
-        Size small = new Size(1 , "S");
-        
-		Product product_ = new Product(1 , 5 , 2000 , item1 , blue , small);
+		Item item = getItem(productCode , manager.getItemList());
+		Color color = getColor(colorValue , manager.getColorList());
+		Size size = getSize(sizeValue , manager.getSizeList());
+		Product product_ = new Product(1 , quantity, item.getPrice() , item , color , size);
+		
+//		Item item1 = new Item("RAF123","KAIN TAYO" , 400 , "images/product/masyas.jpg" , "status" , "description");
+//        Color blue = new Color(1,"BLUE","#aaaggg");
+//        Size small = new Size(1 , "XS");
+//        
+//		Product product_ = new Product(1 , 5 , 2000 , item1 , blue , small);
 		List<Product> productList = cartUtil.addToCart(product_);
 
 		//ADD NEW CART
@@ -87,7 +87,7 @@ public class AddItemToCart extends HttpServlet{
 			"</td>" +
 			"<td style='width: 10%' class='miniCartQuantity'><a>X " + product.getQuantity() + "</a></td>" +
 			"<td style='width: 15%' class='miniCartSubtotal'><span>PHP " + product.getItem().getPrice() + "</span></td>" +
-			"<td style='width: 5%' class='delete' id='" + product.getItem().getProductCode() + "' onclick='removeItem();'><a> x </a></td>" +
+			"<td style='width: 5%' class='delete' id='" + product.getItem().getProductCode() + "' onclick='removeItem(\""+ product.getItem().getProductCode() +"\" , \""+ product.getColor().getColor() +"\" , \""+ product.getSize().getSize() +"\");'><a> x </a></td>" +
 			"</tr>");			
 		}
 		
@@ -97,10 +97,9 @@ public class AddItemToCart extends HttpServlet{
 			"</div>" +
 			"<div class='miniCartFooter text-right'>" +
 			"<h3 class='text-right subtotal'>Subtotal: PHP "+ cartItemPrice +"</h3>" +
-			"<a class='btn btn-sm btn-danger'> <i class='fa fa-shopping-cart'>" +
-			"</i> VIEW CART" +
-			"</a><a class='btn btn-sm btn-primary'> CHECKOUT </a>" +
-			"</div>");
+			"<button class='btn btn-sm btn-danger'><i class='fa fa-shopping-cart'></i> VIEW CART </button> " +
+			"<button class='btn btn-sm btn-primary'> CHECKOUT </button>" +
+			"</div></div>");
 		
 	}
 	
