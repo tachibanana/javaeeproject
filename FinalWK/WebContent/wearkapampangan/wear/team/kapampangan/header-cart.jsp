@@ -23,8 +23,8 @@
 					<tr class="miniCartProduct" id="<%= product.getItem().getProductCode()%>">
 						<td style="width: 20%" class="miniCartProductThumb">
 							<div>
-								<a href="product-details.jsp?productCode=<%= product.getItem().getProductCode()%>">
-								<img src="<%= product.getItem().getImage()%>" alt="img">
+								<a onclick="location.href='product-details.jsp?productCode=<%= product.getItem().getProductCode()%>&color=<%= product.getColor().getColor() %>&size=<%= product.getSize().getSize() %>&quantity=<%= product.getQuantity() %>';">
+									<img src="<%= product.getItem().getImage()%>" alt="img">
 								</a>
 							</div>
 						</td>

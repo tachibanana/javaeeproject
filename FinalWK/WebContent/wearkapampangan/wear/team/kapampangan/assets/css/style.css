@@ -253,6 +253,8 @@ ul.list-border li:hover{background:#ebebeb;}
 
 #product-details-modal .modal-dialog{background:#fff;max-width:960px;overflow:auto;width:100%;}
 
+#modal-review .modal-dialog{max-width:860px; width:100%;}
+
 .modal-header{border-bottom:1px solid #E5E5E5;color:#FFFFFF;padding:5px 15px;margin-bottom:20px;}
 
 .modal-title-site{color:#FFFFFF;font-family:Oswald;font-size:38px;font-weight:lighter;padding:13px 0;text-transform:uppercase;}

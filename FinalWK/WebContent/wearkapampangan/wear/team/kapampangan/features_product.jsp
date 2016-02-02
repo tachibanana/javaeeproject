@@ -2,6 +2,7 @@
 <%@ page import="com.wear.kapampangan.project.library.Item" %>
 <%@ page import="com.wear.kapampangan.project.library.Size" %>
 <%@ page import="com.wear.kapampangan.project.library.InventoryProduct" %>
+
 <div class="morePost row featuredPostContainer style2 globalPaddingTop ">
 	<h3 class="section-title style2 text-center">
 		<span>FEATURES SHIRT</span>
@@ -13,7 +14,7 @@
 		<%! int counter = 0; %>
 		<%
 			manager = (DBManager) request.getServletContext().getAttribute("dbmanager");		
-			for(InventoryProduct product : manager.getInventoryProduct()){ 
+			for(InventoryProduct product : manager.getInventoryProduct()) if(product.getItem().getStatus().equalsIgnoreCase("features")){{ 
 		%>
 			
 			<!-- ITEM START Here -->
@@ -21,7 +22,7 @@
 				<div class="product">
 					<a class="add-fav tooltipHere" data-toggle="tooltip"
 						data-original-title="Add to Wishlist" data-placement="left"> <i
-						class="glyphicon glyphicon-heart"></i>
+						class="glyphicon glyphicon-heart" id="wishlist_button" onclick="addToWishList('<%= product.getItem().getProductCode() %>');"></i>
 					</a>
 
 					<!-- Image -->
@@ -58,13 +59,14 @@
 					</div>
 
 					<div class="action-control">
+					<% System.out.println(product.getAvailableColor().size()); %>
 						<a class="btn btn-primary" onclick="addItem('<%= product.getItem().getProductCode() %>' , '<%= product.getAvailableColor().get(0).getColor()%>' , '<%= product.getAvailableSize().get(0).getSize()%>' , '1')"> <span class="add2cart"><i
 								class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
 						</a>
 					</div>
 				</div>
 			</div>
-		<%} %>
+		<%}} %>
 		</div>
 		<div class="row">
 			<div class="load-more-block text-center">
@@ -75,4 +77,16 @@
 		</div>
 	</div>
 </div>
+<script>
+	function addToWishList(code_){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			//if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				//document.getElementById("cartItemID").innerHTML = xmlhttp.responseText;
+			//}
+		};
+		xmlhttp.open("GET","/FinalWK/user/wishlist?productCode=" + code_ ,true);
+		xmlhttp.send();
+	}
+</script>
 

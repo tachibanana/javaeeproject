@@ -59,6 +59,96 @@
 							</div>
 						</div>
 					</div>
+					<div class="item">
+						<div class="product">
+							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+								<i class="glyphicon glyphicon-heart"></i>
+							</a>
+							
+							<!-- Image -->
+							<div class="image">
+								<div class="quickview">
+									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
+								</div>
+								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
+							</div>
+							
+							<!-- Description -->
+							<div class="description">
+								<h4><a href="product-details.html">Sample Sample</a></h4>
+								<p>Descript dito Descript dito Descript dito Descript dito </p>
+								<span class="size">XL / XXL / S </span>
+							</div>
+							
+							<!-- Price -->
+							<div class="price"> <span>PHP 250</span> </div>
+							<div class="action-control">
+								<a class="btn btn-primary">
+									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="product">
+							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+								<i class="glyphicon glyphicon-heart"></i>
+							</a>
+							
+							<!-- Image -->
+							<div class="image">
+								<div class="quickview">
+									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
+								</div>
+								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
+							</div>
+							
+							<!-- Description -->
+							<div class="description">
+								<h4><a href="product-details.html">Sample Sample</a></h4>
+								<p>Descript dito Descript dito Descript dito Descript dito </p>
+								<span class="size">XL / XXL / S </span>
+							</div>
+							
+							<!-- Price -->
+							<div class="price"> <span>PHP 250</span> </div>
+							<div class="action-control">
+								<a class="btn btn-primary">
+									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="product">
+							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+								<i class="glyphicon glyphicon-heart"></i>
+							</a>
+							
+							<!-- Image -->
+							<div class="image">
+								<div class="quickview">
+									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
+								</div>
+								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
+							</div>
+							
+							<!-- Description -->
+							<div class="description">
+								<h4><a href="product-details.html">Sample Sample</a></h4>
+								<p>Descript dito Descript dito Descript dito Descript dito </p>
+								<span class="size">XL / XXL / S </span>
+							</div>
+							
+							<!-- Price -->
+							<div class="price"> <span>PHP 250</span> </div>
+							<div class="action-control">
+								<a class="btn btn-primary">
+									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
+								</a>
+							</div>
+						</div>
+					</div>
 					
 				</div>
 			</div>

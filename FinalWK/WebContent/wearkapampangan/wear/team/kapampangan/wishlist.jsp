@@ -1,4 +1,12 @@
+<%@ page import="com.wear.kapampangan.project.library.User" %>
+<%@ page import="com.wear.kapampangan.project.library.Item" %>
+<%@ page import="com.wear.kapampangan.project.database.DBManager" %>
+<%! User currentUser = null; %>
+<%! DBManager manager = null; %>
+<% if(session.getAttribute("currentuser") != null) currentUser = (User) session.getAttribute("currentuser");%>
 <% if(session.getAttribute("currentuser") == null) response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/login1.jsp");%>
+<% manager = (DBManager) request.getServletContext().getAttribute("dbmanager");%>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -29,26 +37,38 @@
 				<h1 class="section-title-inner"><span><i class="glyphicon glyphicon-heart"></i> Wisthlist </span></h1>
 				<div class="row userInfo">
 			<div class="col-lg-12">
-<h2 class="block-title-2"> Update your wishlist if it has changed. </h2>
-</div>
-<div class="col-xs-12 col-sm-12">
-<table>
-<tbody>
-<tr class="CartProduct">
-<td style="width:10%" class="CartProductThumb">
-<div> <a href="product-details.html"><img src="images/product/9.jpg" alt="img"></a> </div></td>
-<td style="width:40%"><div class="CartDescription">
-<h4> <a href="product-details.html">WK TSHIRT</a> </h4>
-<span class="size">12 x 1.5 L</span>
-<div class="price"> <span>PHP 250</span> </div>
-</div></td>
-<td style="width:15%">
-<a class="btn btn-primary">
-<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
-</a>
-</td>
-<td style="width:40%" class="delete"><a title="Delete"> <i class="glyphicon glyphicon-trash fa-2x"></i> </a></td>
-</tr>
+				<h2 class="block-title-2"> Update your wishlist if it has changed. </h2>
+			</div>
+			<div class="col-xs-12 col-sm-12">
+				<table>
+					<tbody id="wishlistHere">
+					<% if(currentUser != null){%>
+					<%// System.out.println(currentUser.getEmail()); %>
+					<%// System.out.println(manager.getWishlistItemByUserEmail(currentUser.getEmail())); %>
+					<%for(Item item : manager.getWishlistItemByUserEmail(currentUser.getEmail())){ %>
+						<tr class="CartProduct">
+							<td style="width:10%" class="CartProductThumb">
+								<div>
+									<a href="product-details.jsp?productCode=<%= item.getProductCode() %>"><img src="<%= item.getImage() %>" alt="img"></a>
+								</div>
+							</td>
+					
+						<td style="width:40%">
+							<div class="CartDescription">
+								<h4> <a href="product-details.jsp?productCode=<%= item.getProductCode() %>"><%= item.getName() %></a> </h4>
+								<span class="size">12 x 1.5 L</span>
+								<div class="price"> <span>PHP <%= item.getPrice() %></span> </div>
+							</div>
+						</td>
+						
+						<td style="width:15%">
+							<a class="btn btn-primary" onclick="location.href='product-details.jsp?productCode=<%=item.getProductCode()%>'">
+								<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
+							</a>
+						</td>
+						<td style="width:40%" class="delete"><a title="Delete" onclick="removeToWishList('<%= item.getProductCode() %>');"> <i class="glyphicon glyphicon-trash fa-2x"></i> </a></td>
+					</tr>
+					<%}} %>
 </tbody>
 </table>
 </div>
@@ -79,5 +99,18 @@
 		<script src="assets/js/jquery.minimalect.min.js"></script>
 		<script src="assets/js/bootstrap.touchspin.js"></script>
  		<script src="assets/js/script.js"></script>
+ 		<script>
+		function removeToWishList(code_){
+			var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function(){
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById("wishlistHere").innerHTML = xmlhttp.responseText;
+			}
+		};
+		xmlhttp.open("GET","/FinalWK/wishlist/remove?productCode=" + code_ ,true);
+		xmlhttp.send();
+	}
+</script>
+ 		
 </body>
 </html>

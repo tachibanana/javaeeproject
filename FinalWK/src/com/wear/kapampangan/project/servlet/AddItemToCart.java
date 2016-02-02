@@ -50,6 +50,7 @@ public class AddItemToCart extends HttpServlet{
 
 		//ADD NEW CART
 		session.setAttribute("cartItem" , productList);
+		session.setAttribute("tempCartItem" , productList);
 		
 		int cartItemPrice = 0;
 		for(Product product : productList) cartItemPrice += product.getTotalPrice();
@@ -69,7 +70,7 @@ public class AddItemToCart extends HttpServlet{
 			"<tr class='miniCartProduct'>" +
 			"<td style='width: 20%' class='miniCartProductThumb'>" +
 			"<div>" +
-			"<a href='product-details.html'> <img " +
+			"<a href='product-details.jsp?productCode="+ product.getItem().getProductCode() +"&color="+ product.getColor().getColor() +"&size="+ product.getSize().getSize() +"&quantity="+ product.getQuantity() +"'> <img " +
 			"src='"+ product.getItem().getImage() +"' alt='img'>" +
 			"</a>" +
 			"</div>" +

@@ -8,9 +8,16 @@
 <%! InventoryProduct product = null; %>
 <%! int counter = 0;%>
 <%! String productCode = null; %>
+<%! String colorParam = null; %>
+<%! String sizeParam = null; %>
+<%! String quantityParam = null; %>
+
 
 <% manager = (DBManager) request.getServletContext().getAttribute("dbmanager"); %>
 <% productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");%>
+<% colorParam = (request.getParameter("color") != null ? request.getParameter("color") : "");%>
+<% sizeParam = (request.getParameter("size") != null ? request.getParameter("size") : "");%>
+<% quantityParam = (request.getParameter("quantity") != null ? request.getParameter("quantity") : "");%>
 <% product = manager.getProductByProductCode(productCode); %>
 
 <!DOCTYPE html>
@@ -27,7 +34,9 @@
 		<script src="assets/js/product-details.js"></script>
 		<script src="assets/js/pace.min.js"></script>
 		
-		</head>
+		<link href="assets/css/home-v7.css" rel="stylesheet">
+		<link href="assets/css/product-details-5.css" rel="stylesheet">
+	</head>
 
  <body>
  
@@ -81,7 +90,7 @@
  
 			<div class="col-lg-6 col-md-6 col-sm-5">
 				<h1 class="product-title"><%= product.getItem().getName() %></h1>
-				<h3 class="product-code">Product Code : <%= product.getItem().getProductCode()%></h3>
+				<h3 class="product-code" id="productCode" name="<%= product.getItem().getProductCode()%>">Product Code : <%= product.getItem().getProductCode()%></h3>
 				<!--
 				<div class="rating">
 					<p>
@@ -109,12 +118,16 @@
 			<div class="color-details">
 				<span class="selected-color"><strong>COLOR</strong></span>
 				<ul class="swatches Color">
-					<% for(Color color : product.getAvailableColor()){%>
-						<% if(counter == 0){ %>
-							<li class="selected"><a id="color" style="background-color:<%= color.getColor()%>"> </a></li>
-						<%}else{%>
-					<li><a id="color" style="background-color:<%= color.getColor()%>"> </a></li>
-					<%}counter ++;} counter = 0; %>
+					<% boolean flag = true ; for(Color color : product.getAvailableColor()){%>
+					<!-- if counter == 0 -->
+						<% if(!colorParam.equals("")){%>
+							<% if(color.getColor().equalsIgnoreCase(colorParam)){ flag=false;%>
+								<li class="selected"><a id="color" style="background-color:<%= color.getColor()%>" name="<%= color.getColor()%>"> </a></li>
+						<%}} if(counter == 0 && colorParam.equals("")){%>
+							<li class="selected"><a id="color" style="background-color:<%= color.getColor()%>" name="<%= color.getColor()%>"> </a></li>
+						<%}else if(flag){%>
+					<li><a id="color" style="background-color:<%= color.getColor()%>" name="<%= color.getColor()%>"> </a></li>
+					<%}counter ++; flag=true;} counter = 0; %>
 				</ul>
 			</div>
  			
@@ -122,17 +135,30 @@
 			 <div class="productFilter productFilterLook2">
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-xs-6">
-						<div class="filterBox">
+						<div class="filterBox" id="quantitylist">
 							<select class="form-control">
-								<option value="strawberries" selected>Quantity</option>
-								<option value="mango">1</option>
-								<option value="bananas">2</option>
-								<option value="watermelon">3</option>
-								<option value="grapes">4</option>
-								<option value="oranges">5</option>
-								<option value="pineapple">6</option>
-								<option value="peaches">7</option>
-								<option value="cherries">8</option>
+							<%if(quantityParam.equals("")){ %>
+								<option value="Quantity" selected>Quantity</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<%}else{ boolean quantityFlag = false;%>
+								
+									<option value="Quanitity">Quantity</option>
+									<% for(int ctr = 1 ; ctr <= 8 ; ctr++){
+										if(String.valueOf(ctr).equals(quantityParam)){%>
+											<option value="<%=ctr%>" selected><%=ctr%></option>
+											
+										<%quantityFlag = true; }else{ %>
+											<option value="<%=ctr%>"><%=ctr%></option>
+									<% }} if(!quantityFlag){%>
+										<option value="1" selected>1</option>
+								<%}}%>
 							</select>
 						</div>
 					</div>
@@ -140,12 +166,26 @@
 					
 				<!-- SIZE HERE -->
 				<div class="col-lg-6 col-sm-6 col-xs-6">
-					<div class="filterBox">
+					<div class="filterBox" id="sizelist">
 						<select class="form-control">
-							<option value="strawberries" selected>Size</option>
-							<% for(Size size : product.getAvailableSize()){%>
-								<option value="<%= size.getSize()%>"><%= size.getSize()%></option>
-							<% }%>
+						<%if(sizeParam.equals("")){%>
+							<option value="Size" selected>Size</option>
+							<% int counterSize = 0; %>
+							<% for(Size size : product.getAvailableSize()){
+								if(counterSize == 0){%>
+									<option value="<%= size.getSize()%>" id="firstAvailableSize"><%= size.getSize()%></option>
+								<%}else{ counterSize++;%>
+									<option value="<%= size.getSize()%>"><%= size.getSize()%></option>
+							<% }}}else{ %>
+								<option value="Size" >Size</option>
+								<% for(Size size : product.getAvailableSize()){
+									if(size.getSize().equalsIgnoreCase(sizeParam)){%>
+									<option value="<%= size.getSize()%>" selected><%= size.getSize()%></option>
+								<%}else{%>
+									<option value="<%= size.getSize()%>"><%= size.getSize()%></option>
+								<%}%>
+									
+							<%}}%>
 						</select>
 					</div>
 				</div>
@@ -156,7 +196,8 @@
  		<div class="cart-actions">
 			<div class="addto row">
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<button onclick="productAddToCartForm.submit(this);"
+				<!-- productAddToCartForm.submit(this); -->
+						<button onclick=""
 								class="button btn-block btn-cart cart first"
 								title="Add to Cart" type="button"
 								id="addToCart">
@@ -165,15 +206,17 @@
 				</div>
 				
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-					<a class="link-wishlist wishlist btn-block ">Add to Wishlist</a>
+					<button class="link-wishlist wishlist btn-block " id="addToWishlist">Add to Wishlist</button>
 				</div>
 			</div>
 			<div style="clear:both"></div>
+			<% if(manager.getInventoryDetailByProductCode(product.getItem().getProductCode()).getStatus() == 1){%>
 				<h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> In stock</h3>
-				<h3 style="display:none" class="incaps">
+				<%}else{ %><h3 class="incaps">
 					<i class="fa fa-minus-circle color-out">
 					</i> Out of stock
 				</h3>
+				<%} %>
 				
 				<h3 class="incaps">
 					<i class="glyphicon glyphicon-lock">
@@ -249,6 +292,12 @@
  
 		</div>
  	<div style="clear:both"></div>
+ 	<br />
+ 	<br />
+ 	<hr />
+ 	
+ 	<!-- REVIEWS -->
+ 	<jsp:include page="product-review.jsp" />
  	
  	<!-- RECOMMENDATION -->
 	<jsp:include page="also-like.jsp" />
@@ -258,6 +307,49 @@
  	<!--  FOOTER HERE -->
 	<jsp:include page="footer.jsp"></jsp:include>
 	
+	<div class="modal  fade" id="modal-review" tabindex="-1" role="dialog">
+					<div class="modal-dialog">
+					<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+					<h3 class="modal-title-site text-center">PRODUCT REVIEW </h3>
+					</div>
+					<div class="modal-body">
+					<h3 class="reviewtitle uppercase">You're reviewing: Lorem ipsum dolor sit amet</h3>
+					<form>
+					<div class="form-group">
+					<label>
+					How do you rate this product? </label> <br>
+					<div class="rating-here">
+					<input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-2x" data-empty="fa fa-star-o fa-2x" data-fractions="3"/>
+					</div>
+					</div>
+					
+					<div class="form-group">
+					<label for="rtext">Name</label>
+					<input type="text" class="form-control" id="rtext" placeholder="Your name" required>
+					</div>
+					
+					<div class="form-group">
+					<label for="rtext">Subject</label>
+					<input type="text" class="form-control" id="rtext" placeholder="Subject" required>
+					</div>
+					
+					
+					<div class="form-group ">
+					<label>Review</label>
+					<textarea class="form-control" rows="3" placeholder="Your Review" required></textarea>
+					</div>
+					
+					
+					<button type="submit" class="btn btn-success">Submit Review</button>
+					</form>
+					</div>
+					</div>
+					 
+					</div>
+					 
+					</div>
 	<div class="gap"></div>
 		<script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="assets/bootstrap/js/bootstrap.min.js"></script>

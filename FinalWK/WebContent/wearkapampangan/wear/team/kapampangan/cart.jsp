@@ -73,7 +73,7 @@
 												</div>
 											</td>
 											<td class="delete"><a title="Delete"><i class="glyphicon glyphicon-trash fa-2x"></i></a></td>
-											<td><input class="quanitySniper" type="text" value="<%= product.getQuantity()%>" name="quanitySniper"></td>
+											<td><input class="quanitySniper" type="text" value="<%= product.getQuantity()%>" name="quanitySniper" id="<%= product.getItem().getProductCode()%>"></td>
 											<!-- <td>0</td> -->
 											<td class="price"><%= product.getItem().getPrice() * product.getQuantity()%></td>
 										</tr>
@@ -166,5 +166,28 @@
 		<script src="assets/js/jquery.minimalect.min.js"></script>
 		<script src="assets/js/bootstrap.touchspin.js"></script>
 		<script src="assets/js/script.js"></script>
+		<script>
+		
+		var xmlhttp = new XMLHttpRequest();
+		var code = "RX7809";
+		var name = "Libut Libut";
+		var price = 200;
+		var color = "RED";
+		var size = "XL";
+		var quantity = 5;
+		
+		function updateItem(code_ , color_ , size_ , quantity_){
+			xmlhttp.onreadystatechange = function(){
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					document.getElementById("cartItemId").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET","/FinalWK/update/cart/item?productCode=" + code_ +"&name=" + name + "&newQuantity=" + quantity_ +
+					"&color=" + color_ + "&size=" + size_,true);
+			xmlhttp.send();
+		}
+	
+</script>
+		</script>
 	</body>
 </html>

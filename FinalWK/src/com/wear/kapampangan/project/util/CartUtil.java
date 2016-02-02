@@ -1,16 +1,24 @@
 package com.wear.kapampangan.project.util;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
+import com.wear.kapampangan.project.library.Color;
+import com.wear.kapampangan.project.library.Item;
 import com.wear.kapampangan.project.library.Product;
+import com.wear.kapampangan.project.library.Size;
 
 public class CartUtil {
 	
-	private static List<Product> listOfProduct;
+	private List<Product> listOfProduct;
+	//private List<Product> tempListOfProduct;
 	
 	@SuppressWarnings("unchecked")
 	public CartUtil(HttpSession session){
 		listOfProduct = (List<Product>) session.getAttribute("cartItem");
+		//tempListOfProduct =  (List<Product>) session.getAttribute("tempCartItem"); 
 	}
 	
 	public List<Product> addToCart(Product product_){
@@ -24,7 +32,7 @@ public class CartUtil {
 						notExist = false;
 						tempProduct = new Product(0,
 												  product.getQuantity() + product_.getQuantity(),
-												  product.getTotalPrice() + product_.getItem().getPrice(),
+												  product.getTotalPrice() * product_.getItem().getPrice(),
 												  product.getItem(),
 												  product.getColor(),
 												  product.getSize());
@@ -69,31 +77,32 @@ public class CartUtil {
 		}
 	}
 	
-	public List<Product> updateQuantity(String code , String color , String size , int newQuantity){
-		Product newProduct = null;
-		List<Product> tempListOfProduct = listOfProduct;
-		for(Product product : tempListOfProduct){
-			System.out.println("- counter\n");
-			if(product.getItem().getProductCode().equals(code)){
-				if(product.getSize().getSize().equals(size) && product.getColor().getColor().equals(color)){
-					System.out.println("- test\n");
-					newProduct = new Product(1 ,
-							newQuantity ,
-							newQuantity * product.getItem().getPrice() ,
-							product.getItem() ,
-							product.getColor() , 
-							product.getSize());
-					tempListOfProduct.remove(product);
-					break;
-				}
-			}
-			
-		}
-		
-		tempListOfProduct.add(newProduct);
-		return tempListOfProduct;
-	}
-	
+//	public List<Product> updateQuantity(String code , String color , String size , int newQuantity){
+//		Product newProduct = null;
+//		List<Product> list = tempListOfProduct;
+//				
+//		for(Product product : list){
+//			System.out.println("- counter\n");
+//			if(product.getItem().getProductCode().equals(code)){
+//				if(product.getSize().getSize().equals(size) && product.getColor().getColor().equals(color)){
+//					System.out.println("- test\n");
+//					newProduct = new Product(1 ,
+//							newQuantity ,
+//							newQuantity * product.getItem().getPrice() ,
+//							product.getItem() ,
+//							product.getColor() , 
+//							product.getSize());
+//					list.remove(product);
+//					break;
+//				}
+//			}
+//			
+//		}
+//		
+//		list.add(newProduct);
+//		return list;
+//	}
+//	
 //	public void updateQuantity(String productCode , String  color ,String size , int newQuantity){
 //		String setcode = "";
 //		String setname = "";

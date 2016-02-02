@@ -26,19 +26,23 @@ public class ProductListSetup implements HttpSessionListener{
     	//instantiate
     	HttpSession session = se.getSession();
         List<Product> listOfProduct = new ArrayList<Product>();
+//        List<Product> tempList = new ArrayList<Product>();
         
+        session.setAttribute("cartItem", listOfProduct);
+//        session.setAttribute("tempCartItem", tempList);
 //        Item item1 = new Item("RX7809","Libut Libut" , 200 , "images/product/libut_libut.jpg" , "status" , "description");
 //        Color red = new Color(1,"RED","#aaaggg");
-//        Size small = new Size(2 , "S");
-//        
-//        listOfProduct.add(new Product(1 , 5 , 500.00 , item1 , red , small));
+//        Size small = new Size(2 , "XS");
+        
+//        tempList.add(new Product(1 , 5 , 500.00 , item1 , red , small));
         //listOfProduct.add(new Product("RX7809" ,"Libut Libut" , 200 ,"images/product/libut_libut.jpg" , 5 , "RED" , "XL"));
        // listOfProduct.add(new Product("RXFY9" ,"Ciudad ning Angles" , 250 ,"images/product/ciudad_ning_angles.jpg" , 2 , "RED" , "XL"));
         
      
         
         //create an attribute object
-        session.setAttribute("cartItem", listOfProduct);
+ 
+       
     }
 
     public void sessionDestroyed(HttpSessionEvent arg0){ 

@@ -12,13 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wear.kapampangan.project.library.Product;
-import com.wear.kapampangan.project.util.CartUtil;
+import com.wear.kapampangan.project.util.CartUpdateUtil;
 
 
 @WebServlet("/update/cart/item")
 public class UpdateItemCartQuantity extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
@@ -34,9 +32,9 @@ public class UpdateItemCartQuantity extends HttpServlet {
 		if(!(productCode.trim().equals("") && color.trim().equals("") && size.trim().equals(""))){
 			try{
 				
-				CartUtil cartUtil = new CartUtil(session);
-				List<Product> tempSessionProductList = cartUtil.updateQuantity(productCode, color, size, newQuantity);
-				session.setAttribute("tempSessionCartItem", tempSessionProductList);
+				CartUpdateUtil updateCartUtil = new CartUpdateUtil(session);
+				List<Product> tempSessionProductList = updateCartUtil.updateQuantity(productCode, color, size, newQuantity);
+				session.setAttribute("cartItem", tempSessionProductList);
 				
 				out.print("<table class='cartTable table-responsive' style='width:100%'>" +
 				"<tbody>" +
