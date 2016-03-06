@@ -1,4 +1,4 @@
-<div class="banner">
+<div class="banner" style="background:white;height:900px;">
 	<div class="full-container">
 		<div class="slider-content">
 			<span class="prevControl sliderControl"> 
@@ -9,11 +9,11 @@
 			</span>
 			
 			<!--  ITEM 1 -->
-			<div class="slider slider-v1" data-cycle-swipe=true data-cycle-prev=".prevControl" data-cycle-next=".nextControl" data-cycle-loader="wait">
+			<div class="slider slider-v1" data-cycle-swipe=true data-cycle-prev=".prevControl" data-cycle-next=".nextControl" data-cycle-loader="wait" style="height:800px;">
 				<div class="slider-item slider-item-img1">
-					<img src="images/slider/slider0.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;">
+					<img src="images/slider/slider0.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;height:100%;width:80%;">
 				</div>
-				<div class="slider-item slider-item-img1">
+				<div class="slider-item slider-item-img1" >
 					<div class="sliderInfo">
 						<div class="container">
 							<div class="col-lg-12 col-md-12 col-sm-12 sliderTextFull ">
@@ -27,7 +27,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="images/slider/slider1.jpg" class="img-responsive parallaximg sliderImg" alt="img">
+					<img src="images/slider/slider1.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;height:100%;width:80%;">
 				</div>
 				
 				<!--  ITEM 2 -->
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="images/slider/slider2.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;">
+					<img src="images/slider/slider2.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;height:100%;width:80%;">
 				</div>
 				
 				<!--  ITEM 3 -->
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="images/slider/slider3.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;">
+					<img src="images/slider/slider3.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;height:100%;width:80%;">
 				</div>
 				
 				<!--  ITEM 4 -->
@@ -82,7 +82,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="images/slider/slider4.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;">
+					<img src="images/slider/slider4.jpg" class="img-responsive parallaximg sliderImg" alt="img" style="margin:0px auto;height:100%;width:80%;">
 				</div>
 			</div>
 		</div>

@@ -21,16 +21,23 @@ public class UpdateItemServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
-		 
-		String productCode = "DOGXD";
-		String name = "TESTYYY";
-		double price = 290.00;
-		String image = "dogYYY";
-		String description = "hello";
-		String status = "status";
+		String productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");
+		String name = (request.getParameter("name") != null ? request.getParameter("name") : "");
+		String description = (request.getParameter("description") != null ? request.getParameter("description") : "");
+		String status = (request.getParameter("status") != null ? request.getParameter("status") : "");
+		double price = (request.getParameter("price") != null ? Double.parseDouble(request.getParameter("price")) : 0.0);
+		String image = "images/product/plain-shirt.jpg";
 		
-		manager.updateItem(new Item(productCode , name , price , image , description , status));
+		try{
+			manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+			manager.updateItem(new Item(productCode , name , price , image  , status , description));
+			
+			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/item-list.jsp");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }

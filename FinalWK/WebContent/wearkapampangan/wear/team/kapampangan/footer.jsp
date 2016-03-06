@@ -7,7 +7,7 @@
 <ul>
 <li class="supportLi">
 <p></p>
-<h4> <a class="inline" href="#"> <strong> <i class="fa fa-phone"> </i> 0999 999 9999</strong> </a> </h4>
+<h4> <a class="inline" href="#"> <strong> <i class="fa fa-phone"> </i> 0925 991 2299</strong> </a> </h4>
 </li>
 </ul>
 </div>
@@ -24,14 +24,10 @@
 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
 <h3> Information </h3>
 <ul>
-<li> <a href="#"> Product Details </a> </li>
-<li> <a href="#"> 3D Customizing Shirt </a> </li>
-<li> <a href="#"> Cart </a> </li>
-<li> <a href="#"> About us </a> </li>
+<li> <a href="cart.jsp"> Cart </a> </li>
+<li> <a href="about.jsp"> About us </a> </li>
 <li> <a href="#"> Contact us </a> </li>
-<li> <a href="#"> </a> Design </li>
-<li> <a href="#"> 3D Design </a> </li>
-<li> <a href="#"> Terms &amp; Conditions </a> </li>
+<li> <a href=""> Terms &amp; Conditions </a> </li>
 </ul>
 </div>
 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
@@ -42,7 +38,6 @@
 <li> <a href="#"> My Address </a> </li>
 <li> <a href="wishlist.jsp"> Wish List </a> </li>
 <li> <a href="order-list.jsp"> Order list </a> </li>
-<li> <a href="#"> Order Status </a> </li>
 </ul>
 </div>
 <div style="clear:both" class="hide visible-xs"></div>

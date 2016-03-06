@@ -1,0 +1,114 @@
+*{
+	font-family: Arial;
+}
+
+#shirt-viewer {
+	border: solid black 1px;
+	background-color: #ffffff;
+	background-image: url('../images/customizing/default-white-shirt.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	height: 450px;
+}
+#order-info{
+	width:270px;
+	margin:20px 18px;
+	border: solid gray 1px;
+	position: absolute;
+	top: 200px;
+}
+
+#text-option-here{
+	width:70%;
+}
+
+#mother-box-the-3{
+	height: 460px;
+	background: yellow;
+}
+
+#edit-panel{
+	border: solid black 1px;
+	height: 130px;
+}
+
+#shirt-designer{
+	position: relative;
+	margin: 0px auto;
+	margin-top: 90px;
+	width: 50%;
+	height: 60%;
+	padding: 0px;
+	overflow: hidden;
+}
+#shirt-designer-back{
+	
+	position: relative;
+	margin: 0px auto;
+	margin-top: 90px;
+	width: 50%;
+	height: 60%;
+	padding: 0px;
+	overflow: hidden;
+}
+
+#option-tabs{
+	height: 450px;
+}
+.shirt-designer{
+	border: solid skyblue 1px;
+	border: solid violet 1px;
+}
+
+.default-text-option{
+	font-family: arial;
+	font-size: 12px;
+	color: black;
+}
+
+#id-row-new-here li {
+		  width: 20%;
+		  height: 20%;
+		  float: left;
+		  padding: 10px;
+		}
+
+.ls_small {
+  border: 0 none;
+  display: inline-block;
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: left;
+}
+
+#panel-layer{
+	max-height:200px;
+	overflow-y:scroll; 
+}
+
+.gray{background-color:#777777; width: 18px; min-width:18px; max-width:18px; height: 18px;}
+.blue{background-color:#337ab7; width: 18px; min-width:18px; max-width:18px; height: 18px; }
+.green{background-color:#5cb85c; width: 18px; min-width:18px; max-width:18px;height: 18px;  }
+.sky{background-color:#5bc0de; width: 18px; min-width:18px; max-width:18px; height: 18px; }
+.yellow{background-color:#f0ad4e; width: 18px; min-width:18px; max-width:18px; height: 18px; }
+.red{background-color:#d9534f; width: 18px; min-width:18px; max-width:18px;height: 18px;  }
+.white{background-color:#ffff; width: 18px; min-width:18px; max-width:18px;height: 18px; }
+
+#colors{
+	padding:1px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
+}
+
+.button {
+background-color: #000000;
+color: #FFFFFF;
+padding: px;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+display:inline;
+}
+#edit-panel{
+	display:none;
+}
+
+#panel-item-list  , #panel-item-list-back{ list-style-type: none; margin: 0; padding: 0; width: 100%; background-color: lightgray;}

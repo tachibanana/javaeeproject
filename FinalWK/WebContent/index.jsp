@@ -1,0 +1,1 @@
+<% response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/"); %>

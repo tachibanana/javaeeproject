@@ -1,7 +1,9 @@
 package com.wear.kapampangan.project.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,7 @@ public class UploadImageServlet extends HttpServlet {
 	private String path;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 		
 		String productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");
 		DBManager manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
@@ -46,12 +49,16 @@ public class UploadImageServlet extends HttpServlet {
 						response.getWriter().print(fieldName + ":" + value + "<br />");
 					}else{
 						//do file upload specific process
+			
+						
 						String path = getServletContext().getRealPath("/");
+						//this.path = "images/product/" + item.getName();
 						//call a method to upload file
 						if(!(this.path = ImageUpload.processFile(path, item)).equals(""))
 							response.getWriter().println("File upload success");
 						else 
 							response.getWriter().println("File upload failed");
+						//this.path = "images/product/" + item.getName();
 					}
 			
 				}
@@ -59,8 +66,11 @@ public class UploadImageServlet extends HttpServlet {
 				if(!productCode.equals("")){
 					Item item = (Item) manager.getItemByProductCode(productCode);
 					manager.updateItem(new Item(item.getProductCode() , item.getName() , item.getPrice() , this.path , item.getStatus() , item.getDescription()));
-					response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/item-view.jsp?productCode=" + item.getProductCode());
+					response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/item-info.jsp?productCode=" + item.getProductCode());
 				}
+				
+			
+				out.println("\n" +path);
 			}catch(FileUploadException e){
 				e.printStackTrace();
 			}

@@ -21,11 +21,11 @@
 									<form role="form" class="logForm" method="post" action="/FinalWK/login">
 										<div class="form-group">
 											<label>Email address</label>
-											<input type="email" class="form-control" placeholder="Enter email" required="true" name="email">
+											<input type="email" class="form-control" placeholder="Enter your email" required="true" name="email">
 										</div>
 										<div class="form-group">
 											<label>Password</label>
-											<input type="password" class="form-control" placeholder="Password" required="true" name="password">
+											<input type="password" class="form-control" placeholder="Enter your password" required="true" name="password">
 										</div>
 										<!--
 										<div class="checkbox">
@@ -49,8 +49,9 @@
  
 <div style="clear:both"></div>
 		</div>
- 		<jsp:include page="footer.jsp" />
 		<div class="gap"></div>
+ 		<jsp:include page="footer.jsp" />
+		
 		<script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
 		</script>
 		<script src="assets/bootstrap/js/bootstrap.min.js"></script>

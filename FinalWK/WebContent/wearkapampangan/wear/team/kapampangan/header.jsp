@@ -1,10 +1,10 @@
 <%@ page import="com.wear.kapampangan.project.library.User" %>
 <%! User currentUser = null;%>
-<%! String showStatus = "Sign in";%>
+<%! Boolean showStatus = true;%>
 <%! String logStatus = "Create account";%>
 
 <% currentUser = (User) session.getAttribute("currentuser");%>
-<% if(currentUser != null) showStatus = "Log out"; else showStatus = "Sign in";%>
+<% if(currentUser != null) showStatus = false ; else showStatus = true;%>
 <% if(currentUser != null) logStatus = "Hi " + currentUser.getFirstName(); else logStatus = "Create account";%>
 
 <!-- First Navbar -->
@@ -31,7 +31,7 @@
 								<a href="#">
 									<span><i class="glyphicon glyphicon-phone-alt "></i></span>
 									<span class="hidden-xs" style="margin-left:5px">
-										 0999 999 9999
+										 0925 991 2299
 									</span>
 								</a>
 							</li>
@@ -50,11 +50,17 @@
 							</a>
 						</li>
 						
-						<li>
-							<a href="/FinalWK/invalidate">
-								<span class="hidden-xs"><%= showStatus%></span>
+						<li><% if( showStatus ){%>
+							<a href="/FinalWK/wearkapampangan/wear/team/kapampangan/login1.jsp">
+								<span class="hidden-xs">Sign in</span>
 								<i class="glyphicon glyphicon-log-in hide visible-xs "></i>
 							</a>
+							<% }else{%>
+								<a href="/FinalWK/invalidate">
+									<span class="hidden-xs">Log out</span>
+									<i class="glyphicon glyphicon-log-in hide visible-xs "></i>
+								</a>
+							<%} %>
 						</li>
 						
 						<li class="hidden-xs">
@@ -85,7 +91,8 @@
 		</button>
 		
 		<a class="navbar-brand " href="index.jsp">
-			<img src="images/logo.png" alt="WEAR KAPAMPANGAN"> 
+			 <img src="images/logo.png" alt="WEAR KAPAMPANGAN">  
+			
 		</a>
 		
  		<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
@@ -102,7 +109,8 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="#">Home</a></li>
 			<li class="dropdown megamenu-80width "><a href="shop.jsp">SHOP</a></li>
-			<li class="dropdown megamenu-fullwidth"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">ABOUT</a></li>
+			<li class="dropdown megamenu-fullwidth"> <a data-toggle="dropdown" class="dropdown-toggle" onclick="location.href='about.jsp'">ABOUT</a></li>
+			<li class="dropdown megamenu-fullwidth"> <a data-toggle="dropdown" class="dropdown-toggle" onclick="location.href='../../../forum/forum-forum-category.jsp'">FORUM</a></li>
 		</ul>
  
 		<div class="nav navbar-nav navbar-right hidden-xs">
@@ -127,7 +135,7 @@
 		</a>
 		<div class="searchInputBox pull-right">
 			<input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search" class="search-input" id="text-search">
-				<button class="btn-nobg search-btn" type="submit" onclick="location.href='/FinalWK/search?search=' + getElementById('text-search').value"> <i class="fa fa-search"> </i> </button>
+				<button class="btn-nobg search-btn" type="submit" onclick="location.href='/FinalWK/search?productName=' + getElementById('text-search').value"> <i class="fa fa-search"> </i> </button>
 		</div>
 	</div>
  

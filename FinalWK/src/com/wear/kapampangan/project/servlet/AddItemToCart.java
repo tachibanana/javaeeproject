@@ -67,11 +67,11 @@ public class AddItemToCart extends HttpServlet{
 		
 		for(Product product : productList){
 			out.println(""+
-			"<tr class='miniCartProduct'>" +
+			"<tr class='miniCartProduct' id='"+ product.getItem().getProductCode() +"'>" +
 			"<td style='width: 20%' class='miniCartProductThumb'>" +
 			"<div>" +
-			"<a href='product-details.jsp?productCode="+ product.getItem().getProductCode() +"&color="+ product.getColor().getColor() +"&size="+ product.getSize().getSize() +"&quantity="+ product.getQuantity() +"'> <img " +
-			"src='"+ product.getItem().getImage() +"' alt='img'>" +
+			"<a href='product-details.jsp?productCode="+ product.getItem().getProductCode() +"&color="+ product.getColor().getColor() +"&size="+ product.getSize().getSize() +"&quantity="+ product.getQuantity() +"'>" +
+			"<img src='"+ product.getItem().getImage() +"' alt='img'>" +
 			"</a>" +
 			"</div>" +
 			"</td>" +
@@ -80,6 +80,7 @@ public class AddItemToCart extends HttpServlet{
 			"<h4>" +
 			"<a href='product-details.html'>" + product.getItem().getName() + "</a>" +
 			"</h4>" +
+			"<div style='background-color:"+ product.getColor().getHex() + ";width:10px;height:10px;border:1px solid gray;'>&nbsp;</div>"+
 			"<span class='size'>" + product.getSize().getSize() + "</span>" +
 			"<div class='price'>" +
 			"<span>PHP " + product.getItem().getPrice() + "</span>" +
@@ -98,8 +99,8 @@ public class AddItemToCart extends HttpServlet{
 			"</div>" +
 			"<div class='miniCartFooter text-right'>" +
 			"<h3 class='text-right subtotal'>Subtotal: PHP "+ cartItemPrice +"</h3>" +
-			"<button class='btn btn-sm btn-danger'><i class='fa fa-shopping-cart'></i> VIEW CART </button> " +
-			"<button class='btn btn-sm btn-primary'> CHECKOUT </button>" +
+			"<a class='btn btn-sm btn-danger' href='cart.jsp'><i class='fa fa-shopping-cart'></i> VIEW CART </a> " +
+			"<a class='btn btn-sm btn-primary' href='checkout-1.jsp'> CHECKOUT </a>" +
 			"</div></div>");
 		
 	}

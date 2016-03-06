@@ -19,140 +19,24 @@
 		<jsp:include page="slider.jsp" />
 		
 		<!-- NEW ARRIVALS Here -->
-		<div class="container main-container">
+		 <div class="container main-container">
  			<div class="row featuredPostContainer globalPadding style2">
  			
  				
-				<h3 class="section-title style2 text-center"><span>NEW ARRIVALS</span></h3>
+				<!-- <h3 class="section-title style2 text-center"><span>NEW ARRIVALS</span></h3>-->
 				
 				<!-- PRODUCT ON SLIDER -->
-				<div id="productslider" class="owl-carousel owl-theme">
+				<!--  <div id="productslider" class="owl-carousel owl-theme"> -->
 					
 					<!-- ITEM Here -->
-					<div class="item">
-						<div class="product">
-							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
-								<i class="glyphicon glyphicon-heart"></i>
-							</a>
-							
-							<!-- Image -->
-							<div class="image">
-								<div class="quickview">
-									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
-								</div>
-								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
-							</div>
-							
-							<!-- Description -->
-							<div class="description">
-								<h4><a href="product-details.html">Sample Sample</a></h4>
-								<p>Descript dito Descript dito Descript dito Descript dito </p>
-								<span class="size">XL / XXL / S </span>
-							</div>
-							
-							<!-- Price -->
-							<div class="price"> <span>PHP 250</span> </div>
-							<div class="action-control">
-								<a class="btn btn-primary">
-									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="product">
-							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
-								<i class="glyphicon glyphicon-heart"></i>
-							</a>
-							
-							<!-- Image -->
-							<div class="image">
-								<div class="quickview">
-									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
-								</div>
-								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
-							</div>
-							
-							<!-- Description -->
-							<div class="description">
-								<h4><a href="product-details.html">Sample Sample</a></h4>
-								<p>Descript dito Descript dito Descript dito Descript dito </p>
-								<span class="size">XL / XXL / S </span>
-							</div>
-							
-							<!-- Price -->
-							<div class="price"> <span>PHP 250</span> </div>
-							<div class="action-control">
-								<a class="btn btn-primary">
-									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="product">
-							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
-								<i class="glyphicon glyphicon-heart"></i>
-							</a>
-							
-							<!-- Image -->
-							<div class="image">
-								<div class="quickview">
-									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
-								</div>
-								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
-							</div>
-							
-							<!-- Description -->
-							<div class="description">
-								<h4><a href="product-details.html">Sample Sample</a></h4>
-								<p>Descript dito Descript dito Descript dito Descript dito </p>
-								<span class="size">XL / XXL / S </span>
-							</div>
-							
-							<!-- Price -->
-							<div class="price"> <span>PHP 250</span> </div>
-							<div class="action-control">
-								<a class="btn btn-primary">
-									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="product">
-							<a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
-								<i class="glyphicon glyphicon-heart"></i>
-							</a>
-							
-							<!-- Image -->
-							<div class="image">
-								<div class="quickview">
-									<a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#" data-toggle="modal"> Quick View </a>
-								</div>
-								<a href="product-details.html"><img src="images/product/30.jpg" alt="img" class="img-responsive"></a>
-							</div>
-							
-							<!-- Description -->
-							<div class="description">
-								<h4><a href="product-details.html">Sample Sample</a></h4>
-								<p>Descript dito Descript dito Descript dito Descript dito </p>
-								<span class="size">XL / XXL / S </span>
-							</div>
-							
-							<!-- Price -->
-							<div class="price"> <span>PHP 250</span> </div>
-							<div class="action-control">
-								<a class="btn btn-primary">
-									<span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Add to cart </span>
-								</a>
-							</div>
-						</div>
-					</div>
+						
+					<jsp:include page="new-product2.jsp" />
 					
-				</div>
+					
+				<!-- </div> -->
 			</div>
 		</div>
+		
 		
 		<!-- FEATURES PRODUCT Here -->
 		<jsp:include page="features_product.jsp" />
@@ -164,7 +48,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="parallax-content clearfix">
-								<h1 class="xlarge"> We Love Wear Kapampangan </h1>
+								<h1 class="xlarge"> Wear Kapampangan SULUD ME</h1>
 								<h5 class="parallaxSubtitle"></h5>
 							</div>
 						</div>
@@ -203,16 +87,20 @@
 		var size = "XL";
 		var quantity = 5;
 		
-		function addItem(code_ , color_ , size_ , quantity_){
-			alert(code_ + " " + color_ + " " + size_);
-			xmlhttp.onreadystatechange = function(){
-				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-					document.getElementById("cartItemID").innerHTML = xmlhttp.responseText;
-				}
-			};
-			xmlhttp.open("GET","/FinalWK/add?productCode=" + code_ +"&name=" + name + "&quantity=" + quantity_ +
-					"&color=" + color_ + "&size=" + size_,true);
-			xmlhttp.send();
+		function addItem(code_ , color_ , size_ , quantity_ ){
+			id = "div#dog-dog a#" + code_;
+			if(true){
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+						document.getElementById("cartItemID").innerHTML = xmlhttp.responseText;
+					}
+				};
+				xmlhttp.open("GET","/FinalWK/add?productCode=" + code_ +"&name=" + name + "&quantity=" + quantity_ +
+						"&color=" + color_ + "&size=" + size_,true);
+				xmlhttp.send();
+			}else{
+				alert($(id).attr("name"));
+			}
 		}
 	
 </script>

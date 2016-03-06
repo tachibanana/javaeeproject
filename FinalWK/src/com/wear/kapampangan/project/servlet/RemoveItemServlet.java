@@ -20,9 +20,14 @@ public class RemoveItemServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+		String productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");
+
+		if(!productCode.equals("")){
+			manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+			manager.removeItem(productCode);
+		}
 		
-		manager.removeItem("DOGXD");
+		response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/item-list.jsp");
 	}
 
 }

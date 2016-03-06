@@ -20,10 +20,14 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="row">
 								<h2 class="block-title-2"> Create an account </h2>
-									<form role="form" class="regForm" action="/FinalWK/register" method="get">
+									<form role="form" class="regForm" action="/FinalWK/register" method="post">
 										<div class="form-group">
-											<label>Name</label>
-											<input title="Please enter your username (at least 3 characters)" type="text" class="form-control" placeholder="Enter name" required minlength="3" name="fullname">
+											<label>First Name</label>
+											<input title="Please enter your username (at least 3 characters)" type="text" class="form-control" placeholder="First Name" required minlength="3" name="firstname">
+										</div>
+										<div class="form-group">
+											<label>Last Name</label>
+											<input title="Please enter your username (at least 3 characters)" type="text" class="form-control" placeholder="Last Name" required minlength="3" name="lastname">
 										</div>
 										<div class="form-group">
 											<label>Email address</label>
@@ -33,6 +37,7 @@
 											<label>Password</label>
 											<input required minlength="5" title="Please enter your password, between 5 and 12 characters" type="password" class="form-control" placeholder="Password" name="password">
 										</div>
+										
 										<div class="error"></div>
 										<button type="submit" class="btn   btn-primary"><i class="fa fa-user"></i> Create an account</button>
 									</form>
@@ -45,9 +50,10 @@
 </div>
  
 <div style="clear:both"></div>
-		</div>
+	
+	<div class="gap"></div>
  		<jsp:include page="footer.jsp" />
-		<div class="gap"></div>
+		
 		<script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
 		</script>
 		<script src="assets/bootstrap/js/bootstrap.min.js"></script>

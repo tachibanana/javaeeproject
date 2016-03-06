@@ -5,39 +5,55 @@ $size = "";
 $quantity = "";
 
 $(document).ready(function(){
-	
-	$("#addToCart").click(function(){
-		
-		var productCode = "";
-		
-		productCode = $("#productCode").attr("name");
-		
-		//selected color
-		var colorParam = $("li.selected #color").attr("name");
-		
-		//select size
-		var sizeParam = "";
-		
-		if($("#sizelist select option:selected").val() == "Size"){
-			sizeParam = $("#firstAvailableSize").val();
-		}else{
-			sizeParam = $("#sizelist select option:selected").val();
-		}
-		
-		//select quantity
-		var quantityParam = "";
-		
-		if($("#quantitylist select option:selected").val() == "Quantity"){
-			quantityParam = "1";
-		}else{
-			quantityParam = $("#quantitylist select option:selected").val();
-		}
+         
+		if($("#inventory-stock").attr("name") == "in"){
+			$("#addToCart").click(function(){
+				var quantity;
+				if($("#quantity-id-select option:selected").val() == "Quantity") {
+					quantity = 1;
+				}else{
+					quantity = $("#quantity-id-select option:selected").val();
+				}
+				
+				if(parseInt(quantity) <= parseInt($("#inventory-item-detail").html())){
+					var productCode = "";
 					
-		alert(productCode);
-		
-		window.location.href = "/FinalWK/product-detail/cart/add?productCode=" + productCode + "&color=" + colorParam + "&size=" + sizeParam +"&quantity=" + quantityParam;
-		//addToCartFromProductDetail(colorParam)
-	});	
+					productCode = $("#productCode").attr("name");
+					
+					//selected color
+					var colorParam = $("li.selected #color").attr("name");
+					
+					//select size
+					var sizeParam = "";
+					
+					if($("#sizelist select option:selected").val() == "Size"){
+						sizeParam = $("#firstAvailableSize").val();
+					}else{
+						sizeParam = $("#sizelist select option:selected").val();
+					}
+					
+					//select quantity
+					var quantityParam = "";
+					
+					if($("#quantitylist select option:selected").val() == "Quantity"){
+						quantityParam = "1";
+					}else{
+						quantityParam = $("#quantitylist select option:selected").val();
+					}
+					
+					window.location.href = "/FinalWK/product-detail/cart/add?productCode=" + productCode + "&color=" + colorParam + "&size=" + sizeParam +"&quantity=" + quantityParam;
+					
+					}else{ alert(" " +$("#inventory-item-detail").html() + " stocks remain.")}
+			});	
+		}else if($("#inventory-stock").attr("name") == "out"){
+			$("#quantity-id-select").prop("disabled", true);
+	         $("#size-list-option").prop("disabled", true);
+	         $("#addToCart").click(function(){
+	        	 alert("Out of stock.");
+	         });
+			
+		}
+	
 	
 	$("#addToWishlist").click(function(){
 		var productCode = "";

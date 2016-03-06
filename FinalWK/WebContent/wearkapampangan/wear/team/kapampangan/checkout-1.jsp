@@ -1,3 +1,14 @@
+<%@ page import="com.wear.kapampangan.project.library.User" %>
+<%@ page import="com.wear.kapampangan.project.library.Product" %>
+<%@ page import="com.wear.kapampangan.project.library.Item" %>
+<%@ page import="com.wear.kapampangan.project.database.DBManager" %>
+<%@ page import="java.util.List" %>
+<%! User currentUser = null; %>
+<%! DBManager manager = null; %>
+<%! Product product = null; %>
+<% try { if(( (List<Product>) (session.getAttribute("cartItem")) ).size() <= 0)  response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/cart.jsp"); }catch(Exception e){} %>
+<% if(session.getAttribute("currentuser") != null) currentUser = (User) session.getAttribute("currentuser");%>
+<% if(( (List<Product>) (session.getAttribute("cartItem")) ).size() >= 1 && session.getAttribute("currentuser") != null) response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/checkout-2.jsp");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,15 +64,16 @@
 </div>
 <div class="col-xs-12 col-sm-4">
 <h2 class="block-title-2"><span>Already registered?</span></h2>
-<form role="form">
+<form role="form" method="post" action="/FinalWK/login">
 <div class="form-group">
 <label for="InputEmail2">Email address</label>
-<input type="email" class="form-control" id="InputEmail2" placeholder="Enter email">
+<input type="email" class="form-control" id="InputEmail2" placeholder="Enter email" required="true" name="email">
 </div>
 <div class="form-group">
 <label for="InputPassword2">Password</label>
-<input type="password" class="form-control" id="InputPassword2" placeholder="Password">
+<input type="password" class="form-control" id="InputPassword2" placeholder="Password" required="true" name="password">
 </div>
+<!--
 <div class="checkbox">
 <label>
 <input type="checkbox" name="checkbox">
@@ -71,14 +83,11 @@ Remember me </label>
 <p><a title="Recover your forgotten password" href="forgot-password.html">Forgot your
 password? </a></p>
 </div>
+-->
 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Sign In</button>
 </form>
 </div>
-<div class="col-xs-12 col-sm-4">
-<h2 class="block-title-2"><span>Checkout as Guest</span></h2>
-<p>Don't have an account and you don't want to register? Checkout as a guest instead!</p>
-<a href="checkout-1.html" class="btn btn-primary"><i class="fa fa-sign-in"></i> Checkout as
-Guest</a></div>
+
 </div>
  
 </div>

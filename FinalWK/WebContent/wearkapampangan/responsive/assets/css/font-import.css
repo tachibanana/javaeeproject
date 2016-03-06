@@ -1,0 +1,26 @@
+@font-face{
+	font-family: Cookie Monster;
+	src: url('../fonts/CookieMonster.ttf');
+}
+
+@font-face{
+	font-family: Blessed Day;
+	src: url('../fonts/BlessedDay.otf');
+}
+
+
+@font-face{
+	font-family: Something Strange;
+	src: url('../fonts/SomethingStrange.ttf');
+}
+
+
+@font-face{
+	font-family: Variane Script;
+	src: url('../fonts/VarianeScript.ttf');
+}
+
+@font-face{
+	font-family: Mona Shark;
+	src: url('../fonts/MonaShark.otf');
+}

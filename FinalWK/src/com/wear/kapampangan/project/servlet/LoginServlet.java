@@ -3,6 +3,7 @@ package com.wear.kapampangan.project.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wear.kapampangan.project.database.DBManager;
+import com.wear.kapampangan.project.library.Product;
 import com.wear.kapampangan.project.library.User;
+import com.wear.kapampangan.project.library.UserAuth;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet implements Serializable{
@@ -22,8 +25,8 @@ public class LoginServlet extends HttpServlet implements Serializable{
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 			
-		String email = (request.getParameter("email") != null ? request.getParameter("email") : "");
-		String password = (request.getParameter("password") != null ? request.getParameter("password") : "");
+		String email = (request.getParameter("email") != null ? request.getParameter("email").trim() : "");
+		String password = (request.getParameter("password") != null ? request.getParameter("password").trim() : "");
 		
 		//SET MANAGER
 		DBManager manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
@@ -41,24 +44,19 @@ public class LoginServlet extends HttpServlet implements Serializable{
 				request.getSession().setAttribute("currentuser" , user);
 			}
 		}
+		UserAuth auth = manager.getUserAuthByUserId(manager.getUserIdByEmail(email));
 		
-		
-		if(flag){
-			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/account.jsp");
+		if(flag && auth.getIsActivated() == 1){
+			if(((List<Product>)(session.getAttribute("cartItem"))).size() > 0){
+				response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/cart.jsp");
+			}else{
+				response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/account.jsp");
+			}
 			
 		}else{
-			response.sendRedirect("wrong_password.jsp");
+			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/wrong_password.jsp");
 		}
 			
-		
-//		LoginUtil loginUtil = new WearKapampanganLogin();
-//		
-//		if(loginUtil.isValidate(email, password)){
-//			out.println("Success");
-//			session = request.getSession();
-//			session.setAttribute("wearkapampanganSession", "wks1");
-//		}else
-//			out.println("Wrong email or password");
 	}
 
 }

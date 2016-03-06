@@ -21,4 +21,15 @@
     <param-name>dbpass</param-name>
     <param-value></param-value>
   </context-param>
+  <context-param>
+    <description>Location to store uploaded file</description>
+    <param-name>file-upload</param-name>
+    <param-value>
+         c:\apache-tomcat-5.5.29\webapps\data\
+     </param-value>
+  </context-param>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/wearkapampangan/wear/team/kapampangan/error-page.jsp</location>
+  </error-page>
 </web-app>

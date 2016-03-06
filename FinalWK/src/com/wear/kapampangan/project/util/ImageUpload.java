@@ -11,10 +11,12 @@ public class ImageUpload {
 	public static String processFile(String path, FileItemStream item){
 		
 		try{
-			System.out.println(path  + "wearkapampangan" + File.separator + "wear" + File.separator + "team" + File.separator
-					+ "kapampangan" + File.separator + "images" + File.separator + "product");
-			File f = new File(path  + "wearkapampangan" + File.separator + "wear" + File.separator + "team" + File.separator
-					+ "kapampangan" + File.separator + "images" + File.separator + "product");
+//			System.out.println(path  + "wearkapampangan" + File.separator + "wear" + File.separator + "team" + File.separator
+//					+ "kapampangan" + File.separator + "images" + File.separator + "product");
+//			File f = new File(path  + "wearkapampangan" + File.separator + "wear" + File.separator + "team" + File.separator
+//					+ "kapampangan" + File.separator + "images" + File.separator + "product");
+		
+			File f = new File(path);
 			
 			if(!f.exists()) f.mkdir();
 			File savedFile = new File(f.getAbsolutePath() + File.separator + item.getName());

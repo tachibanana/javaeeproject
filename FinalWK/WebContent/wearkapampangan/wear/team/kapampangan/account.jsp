@@ -37,10 +37,10 @@
 <div class="thumbnail equalheight"> <a title="Orders" href="order-list.jsp"><i class="fa fa-calendar"></i> Order history </a> </div>
 </li>
 <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-<div class="thumbnail equalheight"> <a title="My addresses" href="#"><i class="fa fa-map-marker"></i> My addresses</a> </div>
+<div class="thumbnail equalheight"> <a title="My addresses" href="my-address.jsp"><i class="fa fa-map-marker"></i> My addresses</a> </div>
 </li>
 <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-<div class="thumbnail equalheight"> <a title="Add  address" href="#"> <i class="fa fa-edit"> </i> Add address</a> </div>
+<div class="thumbnail equalheight"> <a title="Add  address" href="/FinalWK/wearkapampangan/wear/team/kapampangan/user-custom-page.jsp"> <i class="fa fa-pencil-square-o"> </i>Customizing</a> </div>
 </li>
 <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
 <div class="thumbnail equalheight"> <a title="Personal information" href="user-information.jsp"><i class="fa fa-cog"></i> Personal information</a> </div>

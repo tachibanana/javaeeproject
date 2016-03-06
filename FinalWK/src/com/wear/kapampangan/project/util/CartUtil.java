@@ -32,7 +32,7 @@ public class CartUtil {
 						notExist = false;
 						tempProduct = new Product(0,
 												  product.getQuantity() + product_.getQuantity(),
-												  product.getTotalPrice() * product_.getItem().getPrice(),
+												  (product.getQuantity() + product_.getQuantity()) * product_.getItem().getPrice(),
 												  product.getItem(),
 												  product.getColor(),
 												  product.getSize());

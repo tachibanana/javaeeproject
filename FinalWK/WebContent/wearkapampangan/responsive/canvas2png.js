@@ -1,0 +1,1 @@
+$('canvas').each(function(i,e){ var img = e.toDataURL("image/png"); $(e).replaceWith(  $('<img src="'+img+'"/>').attr({width: $(e).attr("width"), height: $(e).attr("height"), style: $(e).attr("style") }) ) });

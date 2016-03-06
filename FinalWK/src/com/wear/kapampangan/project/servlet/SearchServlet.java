@@ -19,25 +19,33 @@ public class SearchServlet extends HttpServlet {
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String param = (request.getParameter("search") != null ? request.getParameter("search") : "");
-		DBManager manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
-		Item resultItem = null;
-		int counter = 0;
-		for(Item item : manager.getItemList()){
-			if(item.getName().equalsIgnoreCase(param) || 
-					String.valueOf(item.getPrice()).equalsIgnoreCase(param) ||
-					item.getProductCode().equalsIgnoreCase(param)){
-				resultItem = item;
-				counter ++;
-			}
-		}
+//		String param = (request.getParameter("search") != null ? request.getParameter("search") : "");
+//		DBManager manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+//		Item resultItem = null;
+//		int counter = 0;
+//		for(Item item : manager.getItemList()){
+//			if(item.getName().equalsIgnoreCase(param) || 
+//					String.valueOf(item.getPrice()).equalsIgnoreCase(param) ||
+//					item.getProductCode().equalsIgnoreCase(param)){
+//				resultItem = item;
+//				counter ++;
+//			}
+//		}
+//		
+//		if(resultItem != null && counter == 1){
+//			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/product-details.jsp?productCode=" + resultItem.getProductCode());;
+//		}else{
+//			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/shop.jsp");
+//		}
 		
-		if(resultItem != null && counter == 1){
-			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/product-details.jsp?productCode=" + resultItem.getProductCode());;
-		}else{
+		String param = (request.getParameter("productName") != null ? request.getParameter("productName") : "");
+		DBManager manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+		try{
+			Item item = manager.getItemByNameQuery(param).get(0);
+			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/product-details.jsp?productCode=" + item.getProductCode());;
+		}catch(Exception e){
 			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/shop.jsp");
 		}
-		
 	}
 
 }

@@ -20,16 +20,43 @@ public class AddItemServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+		String productCode = (request.getParameter("productCode") != null ? request.getParameter("productCode") : "");
+		String name = (request.getParameter("name") != null ? request.getParameter("name") : "");
+		String description = (request.getParameter("description") != null ? request.getParameter("description") : "");
+		String status = (request.getParameter("status") != null ? request.getParameter("status") : "");
+		String colorList = (request.getParameter("colorList") != null ? request.getParameter("colorList") : "");
+		String sizeList = (request.getParameter("sizeList") != null ? request.getParameter("sizeList") : "");
+		double price = (request.getParameter("price") != null ? Double.parseDouble(request.getParameter("price")) : 0.0);
+		String image = "images/product/plain-shirt.jpg";
 		
-		String productCode = "DOGXD";
-		String name = "TEST";
-		double price = 290.00;
-		String image = "dog";
-		String description = "hello";
-		String status = "status";
-		
-		manager.addItem(new Item(productCode , name , price , image , description , status));
+		try{
+			manager = (DBManager) request.getServletContext().getAttribute("dbmanager");
+			manager.addItem(new Item(productCode , name , price , image  , status , description));
+			manager.addInventoryDetail(productCode, 0, (byte) 0 );
+			//size list
+			if(!sizeList.trim().equals("")){
+				for(String str : sizeList.split(":")){
+					//System.out.println(str);
+					if(!str.trim().equals("")){
+						manager.addSizeToItem(productCode, manager.getSizeByName(str.trim()).getId());
+					}
+				}
+			}
+			
+			//color list
+			if(!colorList.trim().equals("")){
+				for(String str : colorList.split(":")){
+					if(!str.trim().equals("")){
+						manager.addColorToItem(productCode, manager.getColorByName(str.trim()).getId());
+					}
+				}
+			}
+			
+			response.sendRedirect("/FinalWK/wearkapampangan/wear/team/kapampangan/item-list.jsp");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 

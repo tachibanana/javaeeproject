@@ -5,7 +5,7 @@
 
 <div class="morePost row featuredPostContainer style2 globalPaddingTop ">
 	<h3 class="section-title style2 text-center">
-		<span>FEATURES SHIRT</span>
+		<span>FEATURED SHIRT</span>
 	</h3>
 	<div class="container">
 		<div class="row xsResponse">
@@ -58,9 +58,9 @@
 						<span>PHP <%= ((int) product.getItem().getPrice()) %></span> <span class="old-price"></span>
 					</div>
 
-					<div class="action-control">
-					<% System.out.println(product.getAvailableColor().size()); %>
-						<a class="btn btn-primary" onclick="addItem('<%= product.getItem().getProductCode() %>' , '<%= product.getAvailableColor().get(0).getColor()%>' , '<%= product.getAvailableSize().get(0).getSize()%>' , '1')"> <span class="add2cart"><i
+					<div class="action-control" id="dog-dog">
+					<% System.out.println("Inventory = " + manager.getInventoryDetailByProductCode(product.getItem().getProductCode()).getQuantity()); %>
+						<a class="btn btn-primary" id="<%= product.getItem().getProductCode() %>"  name="<%= manager.getInventoryDetailByProductCode(product.getItem().getProductCode()).getQuantity() %>"onclick="addItem('<%= product.getItem().getProductCode() %>' , '<%= product.getAvailableColor().get(0).getColor()%>' , '<%= product.getAvailableSize().get(0).getSize()%>' , '1')"> <span class="add2cart"><i
 								class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span>
 						</a>
 					</div>
@@ -89,4 +89,5 @@
 		xmlhttp.send();
 	}
 </script>
+
 

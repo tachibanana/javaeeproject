@@ -8,7 +8,6 @@
 <% listOfProducts = (List<Product>) request.getSession().getAttribute("cartItem"); %>
 <% cartPrice = 0; %>
 <% for(Product product : listOfProducts) cartPrice += product.getTotalPrice();%>
-
 <div class="dropdown  cartMenu" id="cartItemID">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<i class="fa fa-shopping-cart"> </i> <span class="cartRespons">
@@ -34,6 +33,7 @@
 								<h4>
 									<a href="product-details.html"><%= product.getItem().getName()%></a>
 								</h4>
+								<div style="background-color:<%= product.getColor().getHex() %>;width:10px;height:10px;border:1px solid gray;">&nbsp;</div>
 								<span class="size"><%= product.getSize().getSize()%></span>
 								<div class="price">
 									<span>PHP <%= product.getItem().getPrice()%></span>

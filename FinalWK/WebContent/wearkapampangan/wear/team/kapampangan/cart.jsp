@@ -53,7 +53,7 @@
 						<div class="col-xs-12 col-sm-12">
 							<div class="cartContent w100" id="cartItemId">
 								<table class="cartTable table-responsive" style="width:100%">
-									<tbody>
+									<tbody id="table-container">
 										<tr class="CartProduct cartTableHeader">
 											<td style="width:15%"> Product </td>
 											<td style="width:40%">Details</td>
@@ -68,6 +68,7 @@
 											<td>
 												<div class="CartDescription">
 													<h4> <a href="#"><%= product.getItem().getName()%></a> </h4>
+													<div style="background-color:<%= product.getColor().getHex() %>;width:10px;height:10px;margin-bottom:8px;border:1px solid gray;margin-bottom:8px;">&nbsp;</div>
 													<span class="size"><%= product.getSize().getSize() %></span>
 													<div class="price"> <span><%= product.getItem().getPrice()%></span></div>
 												</div>
@@ -88,64 +89,18 @@
 									<a href="index.jsp" class="btn btn-default"> <i class="fa fa-arrow-left"></i> &nbsp; Continue shopping </a>
 								</div>
 								<div class="pull-right">
-									<button type="submit" class="btn btn-default"> <i class="fa fa-undo" onclick=""></i> &nbsp; Update cart </button>
+									<button id = "update-cart" type="submit" class="btn btn-default"> <i class="fa fa-undo" ></i> &nbsp; Update cart </button>
 								</div>
 							</div>
 						</div>  
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-5 rightSidebar">
-				<div class="contentBox">
-					<div class="w100 costDetails">
-						<div class="table-block" id="order-detail-content">
-							<a class="btn btn-primary btn-lg btn-block " title="checkout" href="checkout-1.jsp" style="margin-bottom:20px"> Proceed to checkout &nbsp; <i class="fa fa-arrow-right"></i> </a>
-							<div class="w100 cartMiniTable">
-								<table id="cart-summary" class="std table">
-									<tbody>
-										<tr>
-											<td>Total products</td>
-											<td class="price">PHP 1500</td>
-										</tr>
-										
-										<tr style="">
-											<td>Shipping</td>
-											<td class="price"><span class="success">Free shipping!</span></td>
-										</tr>
-										<!--
-										<tr class="cart-total-price ">
-											<td>Total (tax excl.)</td>
-											<td class="price">$216.51</td>
-										</tr>
-										
-										<tr>
-											<td>Total tax</td>
-											<td class="price" id="total-tax">$0.00</td>
-										</tr>
-										-->
-										
-										<tr>
-											<td> Total </td>
-											<td class=" site-color" id="total-price">PHP 1500</td>
-										</tr>
-										
-										<tr>
-										<!--
-											<td colspan="2">
-												<div class="input-append couponForm">
-												<input class="col-lg-8" id="appendedInputButton" type="text" placeholder="Coupon code">
-												<button class="col-lg-4 btn btn-success" type="button">Apply!</button>
-												</div>
-											</td>
-										-->
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+			<!-- Side Bar -->
+			<jsp:include page="side-price-bar.jsp" />
+			
+			
  		</div>
 
 		<div style="clear:both"></div>
@@ -187,7 +142,22 @@
 			xmlhttp.send();
 		}
 	
+		$("#update-cart").click(function(){
+			var ctr = 0;
+			$("#table-container tr").each(function(){
+				ctr += 1;
+			});
+			
+			var newValue = "";
+			if(ctr > 1){
+				$("#table-container tr .quanitySniper").each(function(){
+					newValue += ($(this).val() + "@");
+				});
+				
+			window.location.href = "/FinalWK/cart/update/new?update_quantity=" + newValue;	
+			}
+			
+		});
 </script>
-		</script>
 	</body>
 </html>
